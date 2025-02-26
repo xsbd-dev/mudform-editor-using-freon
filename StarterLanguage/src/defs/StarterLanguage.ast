@@ -1,0 +1,11 @@
+language Starter
+
+model StarterModel {
+    name: identifier;
+    units: DummyUnit[];
+}
+
+modelunit DummyUnit {
+    name: identifier;
+}
+
