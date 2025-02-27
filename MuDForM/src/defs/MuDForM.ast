@@ -1,0 +1,65 @@
+language MuDForM
+
+model MuDForM_Model {
+    name: identifier;
+    units: ConceptDefinitions[];
+}
+
+modelunit ConceptDefinitions {
+    name: identifier;
+    simple_values: SimpleValueDef[];
+    //values: ValueDef[];
+    entities: EntityDef[];
+    transitions: TransitionDef[];
+}
+
+abstract concept ValueDef {
+  name: identifier;
+}
+
+concept SimpleValueDef base ValueDef {
+  
+    doc?: string;
+    db_type: DbType;
+}
+
+concept EntityDef {
+    name: identifier;
+    doc?: string;
+    properties: ValueAttribute[];
+    relations: ReferenceAttribute[];
+}
+
+concept TransitionDef {
+    name: identifier;
+    doc?: string;
+    parameters: ValueAttribute[];
+    involvements: ReferenceAttribute[];
+}
+
+concept ValueAttribute {
+    name: identifier;
+    reference valueRef: ValueDef;
+}
+
+concept ReferenceAttribute {
+    name: identifier;
+    reference entityRef: EntityDef;
+}
+
+limited DbType {
+  name: identifier;
+  bigdec;
+  bigint;
+  boolean;
+  bytes;
+  double;
+  float;
+  instant;
+  keyword;
+  long;
+  string;
+  symbol;
+  uuid;
+  uri;
+}

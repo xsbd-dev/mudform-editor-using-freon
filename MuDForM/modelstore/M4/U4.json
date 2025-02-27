@@ -1,0 +1,484 @@
+{
+   "serializationFormatVersion": "2023.1",
+   "languages": [
+      {
+         "key": "-key-MuDForM",
+         "version": "2023.1"
+      }
+   ],
+   "nodes": [
+      {
+         "id": "ID-16",
+         "classifier": {
+            "language": "-key-MuDForM",
+            "version": "2023.1",
+            "key": "-key-ConceptDefinitions"
+         },
+         "properties": [
+            {
+               "property": {
+                  "language": "-key-MuDForM",
+                  "version": "2023.1",
+                  "key": "-key-ConceptDefinitions-name"
+               },
+               "value": "U4"
+            }
+         ],
+         "containments": [
+            {
+               "containment": {
+                  "language": "-key-MuDForM",
+                  "version": "2023.1",
+                  "key": "-key-ConceptDefinitions-simple_values"
+               },
+               "children": [
+                  "ID-17",
+                  "ID-21"
+               ]
+            },
+            {
+               "containment": {
+                  "language": "-key-MuDForM",
+                  "version": "2023.1",
+                  "key": "-key-ConceptDefinitions-entities"
+               },
+               "children": [
+                  "ID-18",
+                  "ID-20"
+               ]
+            },
+            {
+               "containment": {
+                  "language": "-key-MuDForM",
+                  "version": "2023.1",
+                  "key": "-key-ConceptDefinitions-transitions"
+               },
+               "children": [
+                  "ID-24"
+               ]
+            }
+         ],
+         "references": [],
+         "annotations": [],
+         "parent": null
+      },
+      {
+         "id": "ID-17",
+         "classifier": {
+            "language": "-key-MuDForM",
+            "version": "2023.1",
+            "key": "-key-SimpleValueDef"
+         },
+         "properties": [
+            {
+               "property": {
+                  "language": "-key-MuDForM",
+                  "version": "2023.1",
+                  "key": "-key-SimpleValueDef-doc"
+               },
+               "value": "conforming to RFC 1255"
+            },
+            {
+               "property": {
+                  "language": "-key-MuDForM",
+                  "version": "2023.1",
+                  "key": "-key-ValueDef-name"
+               },
+               "value": "email-address"
+            }
+         ],
+         "containments": [],
+         "references": [
+            {
+               "reference": {
+                  "language": "-key-MuDForM",
+                  "version": "2023.1",
+                  "key": "-key-SimpleValueDef-db_type"
+               },
+               "targets": [
+                  {
+                     "resolveInfo": "string",
+                     "reference": "ID-10"
+                  }
+               ]
+            }
+         ],
+         "annotations": [],
+         "parent": "ID-16"
+      },
+      {
+         "id": "ID-21",
+         "classifier": {
+            "language": "-key-MuDForM",
+            "version": "2023.1",
+            "key": "-key-SimpleValueDef"
+         },
+         "properties": [
+            {
+               "property": {
+                  "language": "-key-MuDForM",
+                  "version": "2023.1",
+                  "key": "-key-SimpleValueDef-doc"
+               },
+               "value": ""
+            },
+            {
+               "property": {
+                  "language": "-key-MuDForM",
+                  "version": "2023.1",
+                  "key": "-key-ValueDef-name"
+               },
+               "value": "money"
+            }
+         ],
+         "containments": [],
+         "references": [
+            {
+               "reference": {
+                  "language": "-key-MuDForM",
+                  "version": "2023.1",
+                  "key": "-key-SimpleValueDef-db_type"
+               },
+               "targets": [
+                  {
+                     "resolveInfo": "bigdec",
+                     "reference": "ID-1"
+                  }
+               ]
+            }
+         ],
+         "annotations": [],
+         "parent": "ID-16"
+      },
+      {
+         "id": "ID-18",
+         "classifier": {
+            "language": "-key-MuDForM",
+            "version": "2023.1",
+            "key": "-key-EntityDef"
+         },
+         "properties": [
+            {
+               "property": {
+                  "language": "-key-MuDForM",
+                  "version": "2023.1",
+                  "key": "-key-EntityDef-name"
+               },
+               "value": "Customer"
+            },
+            {
+               "property": {
+                  "language": "-key-MuDForM",
+                  "version": "2023.1",
+                  "key": "-key-EntityDef-doc"
+               },
+               "value": ""
+            }
+         ],
+         "containments": [
+            {
+               "containment": {
+                  "language": "-key-MuDForM",
+                  "version": "2023.1",
+                  "key": "-key-EntityDef-properties"
+               },
+               "children": [
+                  "ID-19"
+               ]
+            },
+            {
+               "containment": {
+                  "language": "-key-MuDForM",
+                  "version": "2023.1",
+                  "key": "-key-EntityDef-relations"
+               },
+               "children": []
+            }
+         ],
+         "references": [],
+         "annotations": [],
+         "parent": "ID-16"
+      },
+      {
+         "id": "ID-19",
+         "classifier": {
+            "language": "-key-MuDForM",
+            "version": "2023.1",
+            "key": "-key-ValueAttribute"
+         },
+         "properties": [
+            {
+               "property": {
+                  "language": "-key-MuDForM",
+                  "version": "2023.1",
+                  "key": "-key-ValueAttribute-name"
+               },
+               "value": "email"
+            }
+         ],
+         "containments": [],
+         "references": [
+            {
+               "reference": {
+                  "language": "-key-MuDForM",
+                  "version": "2023.1",
+                  "key": "-key-ValueAttribute-valueRef"
+               },
+               "targets": [
+                  {
+                     "resolveInfo": "email-address",
+                     "reference": "ID-17"
+                  }
+               ]
+            }
+         ],
+         "annotations": [],
+         "parent": "ID-18"
+      },
+      {
+         "id": "ID-20",
+         "classifier": {
+            "language": "-key-MuDForM",
+            "version": "2023.1",
+            "key": "-key-EntityDef"
+         },
+         "properties": [
+            {
+               "property": {
+                  "language": "-key-MuDForM",
+                  "version": "2023.1",
+                  "key": "-key-EntityDef-name"
+               },
+               "value": "Account"
+            },
+            {
+               "property": {
+                  "language": "-key-MuDForM",
+                  "version": "2023.1",
+                  "key": "-key-EntityDef-doc"
+               },
+               "value": ""
+            }
+         ],
+         "containments": [
+            {
+               "containment": {
+                  "language": "-key-MuDForM",
+                  "version": "2023.1",
+                  "key": "-key-EntityDef-properties"
+               },
+               "children": [
+                  "ID-22"
+               ]
+            },
+            {
+               "containment": {
+                  "language": "-key-MuDForM",
+                  "version": "2023.1",
+                  "key": "-key-EntityDef-relations"
+               },
+               "children": [
+                  "ID-23"
+               ]
+            }
+         ],
+         "references": [],
+         "annotations": [],
+         "parent": "ID-16"
+      },
+      {
+         "id": "ID-22",
+         "classifier": {
+            "language": "-key-MuDForM",
+            "version": "2023.1",
+            "key": "-key-ValueAttribute"
+         },
+         "properties": [
+            {
+               "property": {
+                  "language": "-key-MuDForM",
+                  "version": "2023.1",
+                  "key": "-key-ValueAttribute-name"
+               },
+               "value": "balance"
+            }
+         ],
+         "containments": [],
+         "references": [
+            {
+               "reference": {
+                  "language": "-key-MuDForM",
+                  "version": "2023.1",
+                  "key": "-key-ValueAttribute-valueRef"
+               },
+               "targets": [
+                  {
+                     "resolveInfo": "money",
+                     "reference": "ID-21"
+                  }
+               ]
+            }
+         ],
+         "annotations": [],
+         "parent": "ID-20"
+      },
+      {
+         "id": "ID-23",
+         "classifier": {
+            "language": "-key-MuDForM",
+            "version": "2023.1",
+            "key": "-key-ReferenceAttribute"
+         },
+         "properties": [
+            {
+               "property": {
+                  "language": "-key-MuDForM",
+                  "version": "2023.1",
+                  "key": "-key-ReferenceAttribute-name"
+               },
+               "value": "parent"
+            }
+         ],
+         "containments": [],
+         "references": [
+            {
+               "reference": {
+                  "language": "-key-MuDForM",
+                  "version": "2023.1",
+                  "key": "-key-ReferenceAttribute-entityRef"
+               },
+               "targets": [
+                  {
+                     "resolveInfo": "Customer",
+                     "reference": "ID-18"
+                  }
+               ]
+            }
+         ],
+         "annotations": [],
+         "parent": "ID-20"
+      },
+      {
+         "id": "ID-24",
+         "classifier": {
+            "language": "-key-MuDForM",
+            "version": "2023.1",
+            "key": "-key-TransitionDef"
+         },
+         "properties": [
+            {
+               "property": {
+                  "language": "-key-MuDForM",
+                  "version": "2023.1",
+                  "key": "-key-TransitionDef-name"
+               },
+               "value": "ToOpen"
+            },
+            {
+               "property": {
+                  "language": "-key-MuDForM",
+                  "version": "2023.1",
+                  "key": "-key-TransitionDef-doc"
+               },
+               "value": ""
+            }
+         ],
+         "containments": [
+            {
+               "containment": {
+                  "language": "-key-MuDForM",
+                  "version": "2023.1",
+                  "key": "-key-TransitionDef-parameters"
+               },
+               "children": []
+            },
+            {
+               "containment": {
+                  "language": "-key-MuDForM",
+                  "version": "2023.1",
+                  "key": "-key-TransitionDef-involvements"
+               },
+               "children": [
+                  "ID-25",
+                  "ID-26"
+               ]
+            }
+         ],
+         "references": [],
+         "annotations": [],
+         "parent": "ID-16"
+      },
+      {
+         "id": "ID-25",
+         "classifier": {
+            "language": "-key-MuDForM",
+            "version": "2023.1",
+            "key": "-key-ReferenceAttribute"
+         },
+         "properties": [
+            {
+               "property": {
+                  "language": "-key-MuDForM",
+                  "version": "2023.1",
+                  "key": "-key-ReferenceAttribute-name"
+               },
+               "value": "_"
+            }
+         ],
+         "containments": [],
+         "references": [
+            {
+               "reference": {
+                  "language": "-key-MuDForM",
+                  "version": "2023.1",
+                  "key": "-key-ReferenceAttribute-entityRef"
+               },
+               "targets": [
+                  {
+                     "resolveInfo": "Account",
+                     "reference": "ID-20"
+                  }
+               ]
+            }
+         ],
+         "annotations": [],
+         "parent": "ID-24"
+      },
+      {
+         "id": "ID-26",
+         "classifier": {
+            "language": "-key-MuDForM",
+            "version": "2023.1",
+            "key": "-key-ReferenceAttribute"
+         },
+         "properties": [
+            {
+               "property": {
+                  "language": "-key-MuDForM",
+                  "version": "2023.1",
+                  "key": "-key-ReferenceAttribute-name"
+               },
+               "value": "for"
+            }
+         ],
+         "containments": [],
+         "references": [
+            {
+               "reference": {
+                  "language": "-key-MuDForM",
+                  "version": "2023.1",
+                  "key": "-key-ReferenceAttribute-entityRef"
+               },
+               "targets": [
+                  {
+                     "resolveInfo": "Customer",
+                     "reference": "ID-18"
+                  }
+               ]
+            }
+         ],
+         "annotations": [],
+         "parent": "ID-24"
+      }
+   ]
+}
