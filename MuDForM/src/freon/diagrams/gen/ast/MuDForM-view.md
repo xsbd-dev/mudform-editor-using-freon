@@ -4,33 +4,20 @@
     classDiagram
     direction TD
     %% other possibilites: LR RL DT TB (same as TD)
-    class ValueDef {
+    class ValueTypeDef {
+        
+        + identifier name
+		+ string doc
+    }
+    class ValueType {
         <<abstract>>
-        + identifier name
-    }
-    class SimpleValueDef {
         
-        + string doc
     }
-    class EntityDef {
+    class SimpleValueType {
         
-        + identifier name
-		+ string doc
-    }
-    class TransitionDef {
         
-        + identifier name
-		+ string doc
     }
-    class ValueAttribute {
-        
-        + identifier name
-    }
-    class ReferenceAttribute {
-        
-        + identifier name
-    }
-    class DbType {
+    class DatomicType {
         <<enumeration>>
         bigdec
 		bigint
@@ -46,19 +33,67 @@
 		uuid
 		uri
     }
+    class ProductValueType {
+        
+        
+    }
+    class SumValueType {
+        
+        
+    }
+    class TypeField {
+        
+        + string label
+    }
+    class ListValueType {
+        
+        
+    }
+    class ValueTypeReference {
+        
+        
+    }
+    class EntityTypeDef {
+        
+        + identifier name
+		+ string doc
+    }
+    class TransitionTypeDef {
+        
+        + identifier name
+		+ string doc
+    }
+    class ValueAttribute {
+        
+        + string label
+    }
+    class ReferenceAttribute {
+        
+        + string label
+    }
 
-    ValueDef <|-- SimpleValueDef
+    ValueType <|-- SimpleValueType
+ValueType <|-- ProductValueType
+ValueType <|-- SumValueType
+ValueType <|-- ListValueType
+ValueType <|-- ValueTypeReference
 
-        EntityDef *-- "0..*" ValueAttribute : properties
+        ValueTypeDef *-- "1" ValueType : type
+ProductValueType *-- "0..*" TypeField : fields
+SumValueType *-- "0..*" TypeField : fields
+TypeField *-- "1" ValueType : type
+ListValueType *-- "1" ValueType : list
+EntityTypeDef *-- "0..*" ValueAttribute : properties
 
-		EntityDef *-- "0..*" ReferenceAttribute : relations
-TransitionDef *-- "0..*" ValueAttribute : parameters
+		EntityTypeDef *-- "0..*" ReferenceAttribute : relations
+TransitionTypeDef *-- "0..*" ValueAttribute : parameters
 
-		TransitionDef *-- "0..*" ReferenceAttribute : involvements
+		TransitionTypeDef *-- "0..*" ReferenceAttribute : involvements
 
-        SimpleValueDef --> "1" DbType : db_type
-ValueAttribute --> "1" ValueDef : valueRef
-ReferenceAttribute --> "1" EntityDef : entityRef
+        SimpleValueType --> "1" DatomicType : primitive_type
+ValueTypeReference --> "1" ValueTypeDef : defRef
+ValueAttribute --> "1" ValueTypeDef : valueRef
+ReferenceAttribute --> "1" EntityTypeDef : entityRef
 
         
 ```

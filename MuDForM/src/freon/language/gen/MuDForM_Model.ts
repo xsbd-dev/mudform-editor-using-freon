@@ -11,7 +11,7 @@ import {
     FreUtils,
     matchElementList,
 } from "@freon4dsl/core";
-import { ConceptDefinitions } from "./internal.js";
+import { ConceptTypeDefinitions } from "./internal.js";
 
 import { makeObservable, action, runInAction } from "mobx";
 
@@ -44,7 +44,7 @@ export class MuDForM_Model extends MobxModelElementImpl implements FreModel {
     $id: string = ""; // a unique identifier
     parseLocation: FreParseLocation; // if relevant, the location of this element within the source from which it is parsed
     name: string; // implementation of name
-    units: ConceptDefinitions[]; // implementation of part 'units'
+    units: ConceptTypeDefinitions[]; // implementation of part 'units'
 
     constructor(id?: string) {
         super();
@@ -166,10 +166,10 @@ export class MuDForM_Model extends MobxModelElementImpl implements FreModel {
             return false;
         }
         // we must store the interface in the same place as the old unit, which info is held in FreContainer()
-        if (oldUnit.freLanguageConcept() === "ConceptDefinitions" && oldUnit.freOwnerDescriptor().propertyName === "units") {
+        if (oldUnit.freLanguageConcept() === "ConceptTypeDefinitions" && oldUnit.freOwnerDescriptor().propertyName === "units") {
             AST.changeNamed("removeUnit", () => {
-                const index = this.units.indexOf(oldUnit as ConceptDefinitions);
-                this.units.splice(index, 1, newUnit as ConceptDefinitions);
+                const index = this.units.indexOf(oldUnit as ConceptTypeDefinitions);
+                this.units.splice(index, 1, newUnit as ConceptTypeDefinitions);
             });
         } else {
             return false;
@@ -186,9 +186,9 @@ export class MuDForM_Model extends MobxModelElementImpl implements FreModel {
         if (!!newUnit) {
             const myMetatype = newUnit.freLanguageConcept();
             switch (myMetatype) {
-                case "ConceptDefinitions": {
+                case "ConceptTypeDefinitions": {
                     AST.changeNamed("addUnit", () => {
-                        this.units.push(newUnit as ConceptDefinitions);
+                        this.units.push(newUnit as ConceptTypeDefinitions);
                     });
                     return true;
                 }
@@ -206,9 +206,9 @@ export class MuDForM_Model extends MobxModelElementImpl implements FreModel {
         if (!!oldUnit) {
             const myMetatype = oldUnit.freLanguageConcept();
             switch (myMetatype) {
-                case "ConceptDefinitions": {
+                case "ConceptTypeDefinitions": {
                     AST.changeNamed("removeUnit", () => {
-                        this.units.splice(this.units.indexOf(oldUnit as ConceptDefinitions), 1);
+                        this.units.splice(this.units.indexOf(oldUnit as ConceptTypeDefinitions), 1);
                     });
                     return true;
                 }
@@ -224,13 +224,13 @@ export class MuDForM_Model extends MobxModelElementImpl implements FreModel {
      */
     newUnit(typename: string): FreModelUnit {
         switch (typename) {
-            case "ConceptDefinitions": {
-                let unit: ConceptDefinitions;
+            case "ConceptTypeDefinitions": {
+                let unit: ConceptTypeDefinitions;
                 runInAction(() => {
-                    unit = ConceptDefinitions.create({});
+                    unit = ConceptTypeDefinitions.create({});
                 });
                 AST.changeNamed("newUnit", () => {
-                    this.units.push(unit as ConceptDefinitions);
+                    this.units.push(unit as ConceptTypeDefinitions);
                 });
                 return unit;
             }
@@ -252,7 +252,7 @@ export class MuDForM_Model extends MobxModelElementImpl implements FreModel {
      */
     getUnitsForType(type: string): FreModelUnit[] {
         switch (type) {
-            case "ConceptDefinitions": {
+            case "ConceptTypeDefinitions": {
                 return this.units;
             }
         }

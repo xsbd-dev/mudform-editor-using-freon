@@ -1,0 +1,297 @@
+{
+   "serializationFormatVersion": "2023.1",
+   "languages": [
+      {
+         "key": "-key-MuDForM",
+         "version": "2023.1"
+      }
+   ],
+   "nodes": [
+      {
+         "id": "ID-39",
+         "classifier": {
+            "language": "-key-MuDForM",
+            "version": "2023.1",
+            "key": "-key-ConceptTypeDefinitions"
+         },
+         "properties": [
+            {
+               "property": {
+                  "language": "-key-MuDForM",
+                  "version": "2023.1",
+                  "key": "-key-ConceptTypeDefinitions-name"
+               },
+               "value": "Citizen"
+            },
+            {
+               "property": {
+                  "language": "-key-MuDForM",
+                  "version": "2023.1",
+                  "key": "-key-ConceptTypeDefinitions-doc"
+               },
+               "value": ""
+            }
+         ],
+         "containments": [
+            {
+               "containment": {
+                  "language": "-key-MuDForM",
+                  "version": "2023.1",
+                  "key": "-key-ConceptTypeDefinitions-values"
+               },
+               "children": [
+                  "ID-40"
+               ]
+            },
+            {
+               "containment": {
+                  "language": "-key-MuDForM",
+                  "version": "2023.1",
+                  "key": "-key-ConceptTypeDefinitions-entities"
+               },
+               "children": [
+                  "ID-42"
+               ]
+            },
+            {
+               "containment": {
+                  "language": "-key-MuDForM",
+                  "version": "2023.1",
+                  "key": "-key-ConceptTypeDefinitions-transitions"
+               },
+               "children": []
+            }
+         ],
+         "references": [],
+         "annotations": [],
+         "parent": null
+      },
+      {
+         "id": "ID-40",
+         "classifier": {
+            "language": "-key-MuDForM",
+            "version": "2023.1",
+            "key": "-key-ValueTypeDef"
+         },
+         "properties": [
+            {
+               "property": {
+                  "language": "-key-MuDForM",
+                  "version": "2023.1",
+                  "key": "-key-ValueTypeDef-name"
+               },
+               "value": "BSN"
+            },
+            {
+               "property": {
+                  "language": "-key-MuDForM",
+                  "version": "2023.1",
+                  "key": "-key-ValueTypeDef-doc"
+               },
+               "value": ""
+            }
+         ],
+         "containments": [
+            {
+               "containment": {
+                  "language": "-key-MuDForM",
+                  "version": "2023.1",
+                  "key": "-key-ValueTypeDef-type"
+               },
+               "children": [
+                  "ID-41"
+               ]
+            }
+         ],
+         "references": [],
+         "annotations": [],
+         "parent": "ID-39"
+      },
+      {
+         "id": "ID-41",
+         "classifier": {
+            "language": "-key-MuDForM",
+            "version": "2023.1",
+            "key": "-key-SimpleValueType"
+         },
+         "properties": [],
+         "containments": [],
+         "references": [
+            {
+               "reference": {
+                  "language": "-key-MuDForM",
+                  "version": "2023.1",
+                  "key": "-key-SimpleValueType-primitive_type"
+               },
+               "targets": [
+                  {
+                     "resolveInfo": "string",
+                     "reference": "ID-10"
+                  }
+               ]
+            }
+         ],
+         "annotations": [],
+         "parent": "ID-40"
+      },
+      {
+         "id": "ID-42",
+         "classifier": {
+            "language": "-key-MuDForM",
+            "version": "2023.1",
+            "key": "-key-EntityTypeDef"
+         },
+         "properties": [
+            {
+               "property": {
+                  "language": "-key-MuDForM",
+                  "version": "2023.1",
+                  "key": "-key-EntityTypeDef-name"
+               },
+               "value": "Person"
+            },
+            {
+               "property": {
+                  "language": "-key-MuDForM",
+                  "version": "2023.1",
+                  "key": "-key-EntityTypeDef-doc"
+               },
+               "value": ""
+            }
+         ],
+         "containments": [
+            {
+               "containment": {
+                  "language": "-key-MuDForM",
+                  "version": "2023.1",
+                  "key": "-key-EntityTypeDef-properties"
+               },
+               "children": [
+                  "ID-43",
+                  "ID-44",
+                  "ID-45"
+               ]
+            },
+            {
+               "containment": {
+                  "language": "-key-MuDForM",
+                  "version": "2023.1",
+                  "key": "-key-EntityTypeDef-relations"
+               },
+               "children": []
+            }
+         ],
+         "references": [],
+         "annotations": [],
+         "parent": "ID-39"
+      },
+      {
+         "id": "ID-43",
+         "classifier": {
+            "language": "-key-MuDForM",
+            "version": "2023.1",
+            "key": "-key-ValueAttribute"
+         },
+         "properties": [
+            {
+               "property": {
+                  "language": "-key-MuDForM",
+                  "version": "2023.1",
+                  "key": "-key-ValueAttribute-label"
+               },
+               "value": "full name"
+            }
+         ],
+         "containments": [],
+         "references": [
+            {
+               "reference": {
+                  "language": "-key-MuDForM",
+                  "version": "2023.1",
+                  "key": "-key-ValueAttribute-valueRef"
+               },
+               "targets": [
+                  {
+                     "resolveInfo": "name",
+                     "reference": "ID-32"
+                  }
+               ]
+            }
+         ],
+         "annotations": [],
+         "parent": "ID-42"
+      },
+      {
+         "id": "ID-44",
+         "classifier": {
+            "language": "-key-MuDForM",
+            "version": "2023.1",
+            "key": "-key-ValueAttribute"
+         },
+         "properties": [
+            {
+               "property": {
+                  "language": "-key-MuDForM",
+                  "version": "2023.1",
+                  "key": "-key-ValueAttribute-label"
+               },
+               "value": "email address"
+            }
+         ],
+         "containments": [],
+         "references": [
+            {
+               "reference": {
+                  "language": "-key-MuDForM",
+                  "version": "2023.1",
+                  "key": "-key-ValueAttribute-valueRef"
+               },
+               "targets": [
+                  {
+                     "resolveInfo": "email_address",
+                     "reference": "ID-16"
+                  }
+               ]
+            }
+         ],
+         "annotations": [],
+         "parent": "ID-42"
+      },
+      {
+         "id": "ID-45",
+         "classifier": {
+            "language": "-key-MuDForM",
+            "version": "2023.1",
+            "key": "-key-ValueAttribute"
+         },
+         "properties": [
+            {
+               "property": {
+                  "language": "-key-MuDForM",
+                  "version": "2023.1",
+                  "key": "-key-ValueAttribute-label"
+               },
+               "value": "BSN"
+            }
+         ],
+         "containments": [],
+         "references": [
+            {
+               "reference": {
+                  "language": "-key-MuDForM",
+                  "version": "2023.1",
+                  "key": "-key-ValueAttribute-valueRef"
+               },
+               "targets": [
+                  {
+                     "resolveInfo": "BSN",
+                     "reference": "ID-40"
+                  }
+               ]
+            }
+         ],
+         "annotations": [],
+         "parent": "ID-42"
+      }
+   ]
+}

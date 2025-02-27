@@ -20,7 +20,7 @@ import { MuDForM_ModelStdlib } from "../../stdlib/gen/MuDForM_ModelStdlib.js";
 import { MuDForM_ModelModelUnitWriter } from "../../writer/gen/MuDForM_ModelModelUnitWriter.js";
 import { MuDForM_ModelModelUnitReader } from "../../reader/gen/MuDForM_ModelModelUnitReader.js";
 import { MainMuDForM_ModelInterpreter } from "../../interpreter/MainMuDForM_ModelInterpreter.js";
-import { MuDForM_Model, ConceptDefinitions, initializeLanguage } from "../../language/gen/index.js";
+import { MuDForM_Model, ConceptTypeDefinitions, initializeLanguage } from "../../language/gen/index.js";
 
 /**
  * Class MuDForM_ModelEnvironment provides the link between all parts of the language environment.
@@ -79,5 +79,5 @@ export class MuDForM_ModelEnvironment implements FreEnvironment {
     interpreter: FreInterpreter = new MainMuDForM_ModelInterpreter();
     projectionHandler: FreProjectionHandler;
     languageName: string = "MuDForM_Model";
-    fileExtensions: Map<string, string> = new Map([["ConceptDefinitions", "con"]]);
+    fileExtensions: Map<string, string> = new Map([["ConceptTypeDefinitions", "con"]]);
 }

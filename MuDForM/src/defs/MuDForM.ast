@@ -2,52 +2,30 @@ language MuDForM
 
 model MuDForM_Model {
     name: identifier;
-    units: ConceptDefinitions[];
+    units: ConceptTypeDefinitions[];
 }
 
-modelunit ConceptDefinitions {
+modelunit ConceptTypeDefinitions {
     name: identifier;
-    simple_values: SimpleValueDef[];
-    //values: ValueDef[];
-    entities: EntityDef[];
-    transitions: TransitionDef[];
+    doc?: string;
+    values: ValueTypeDef[];
+    entities: EntityTypeDef[];
+    transitions: TransitionTypeDef[];
 }
 
-abstract concept ValueDef {
+concept ValueTypeDef {
   name: identifier;
+  doc?: string;
+  type: ValueType;
 }
 
-concept SimpleValueDef base ValueDef {
-  
-    doc?: string;
-    db_type: DbType;
+abstract concept ValueType {}
+
+concept SimpleValueType base ValueType {
+    primitive_type: DatomicType;
 }
 
-concept EntityDef {
-    name: identifier;
-    doc?: string;
-    properties: ValueAttribute[];
-    relations: ReferenceAttribute[];
-}
-
-concept TransitionDef {
-    name: identifier;
-    doc?: string;
-    parameters: ValueAttribute[];
-    involvements: ReferenceAttribute[];
-}
-
-concept ValueAttribute {
-    name: identifier;
-    reference valueRef: ValueDef;
-}
-
-concept ReferenceAttribute {
-    name: identifier;
-    reference entityRef: EntityDef;
-}
-
-limited DbType {
+limited DatomicType {
   name: identifier;
   bigdec;
   bigint;
@@ -63,3 +41,50 @@ limited DbType {
   uuid;
   uri;
 }
+
+concept ProductValueType base ValueType {
+    fields: TypeField[];
+}
+
+concept SumValueType base ValueType {
+    fields: TypeField[];
+}
+
+concept TypeField {
+    label: string;
+    type: ValueType;
+}
+
+concept ListValueType base ValueType {
+    list: ValueType; // this list is homogeneous
+}
+
+concept ValueTypeReference base ValueType {
+    reference defRef: ValueTypeDef;
+}
+
+concept EntityTypeDef {
+    name: identifier;
+    doc?: string;
+    properties: ValueAttribute[];
+    relations: ReferenceAttribute[];
+}
+
+concept TransitionTypeDef {
+    name: identifier;
+    doc?: string;
+    parameters: ValueAttribute[];
+    involvements: ReferenceAttribute[];
+}
+
+concept ValueAttribute {
+    label: string;
+    reference valueRef: ValueTypeDef;
+}
+
+concept ReferenceAttribute {
+    label: string;
+    reference entityRef: EntityTypeDef;
+}
+
+

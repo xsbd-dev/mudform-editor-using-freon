@@ -3,12 +3,12 @@ import {
     MobxModelElementImpl,
     observableprim,
     observablepart,
-    FreNamedNode,
+    FreNode,
     FreParseLocation,
     FreNodeReference,
     FreUtils,
 } from "@freon4dsl/core";
-import { ValueDef } from "./internal.js";
+import { ValueTypeDef } from "./internal.js";
 
 import { makeObservable, action } from "mobx";
 
@@ -17,7 +17,7 @@ import { makeObservable, action } from "mobx";
  * It uses mobx decorators to enable parts of the language environment, e.g. the editor, to react
  * to the changes in the state of its properties.
  */
-export class ValueAttribute extends MobxModelElementImpl implements FreNamedNode {
+export class ValueAttribute extends MobxModelElementImpl implements FreNode {
     /**
      * A convenience method that creates an instance of this class
      * based on the properties defined in 'data'.
@@ -25,8 +25,8 @@ export class ValueAttribute extends MobxModelElementImpl implements FreNamedNode
      */
     static create(data: Partial<ValueAttribute>): ValueAttribute {
         const result = new ValueAttribute(data.$id);
-        if (!!data.name) {
-            result.name = data.name;
+        if (!!data.label) {
+            result.label = data.label;
         }
         if (!!data.valueRef) {
             result.valueRef = data.valueRef;
@@ -40,9 +40,9 @@ export class ValueAttribute extends MobxModelElementImpl implements FreNamedNode
     readonly $typename: string = "ValueAttribute"; // holds the metatype in the form of a string
     $id: string = ""; // a unique identifier
     parseLocation: FreParseLocation; // if relevant, the location of this element within the source from which it is parsed
-    name: string; // implementation of name
+    label: string; // implementation of label
 
-    valueRef: FreNodeReference<ValueDef>; // implementation of reference 'valueRef'
+    valueRef: FreNodeReference<ValueTypeDef>; // implementation of reference 'valueRef'
 
     constructor(id?: string) {
         super();
@@ -53,8 +53,8 @@ export class ValueAttribute extends MobxModelElementImpl implements FreNamedNode
         }
         // Both 'observableprim' and 'observableprimlist' change the get and set of the attribute
         // such that the part is observable. In lists no 'null' or 'undefined' values are allowed.
-        observableprim(this, "name");
-        this.name = "";
+        observableprim(this, "label");
+        this.label = "";
 
         // Both 'observablepart' and 'observablepartlist' change the get and set of the attribute
         // such that the parent-part relationship is consistently maintained,
@@ -113,8 +113,8 @@ export class ValueAttribute extends MobxModelElementImpl implements FreNamedNode
      */
     copy(): ValueAttribute {
         const result = new ValueAttribute();
-        if (!!this.name) {
-            result.name = this.name;
+        if (!!this.label) {
+            result.label = this.label;
         }
         if (!!this.valueRef) {
             result.valueRef = this.valueRef.copy();
@@ -128,8 +128,8 @@ export class ValueAttribute extends MobxModelElementImpl implements FreNamedNode
      */
     public match(toBeMatched: Partial<ValueAttribute>): boolean {
         let result: boolean = true;
-        if (result && toBeMatched.name !== null && toBeMatched.name !== undefined && toBeMatched.name.length > 0) {
-            result = result && this.name === toBeMatched.name;
+        if (result && toBeMatched.label !== null && toBeMatched.label !== undefined && toBeMatched.label.length > 0) {
+            result = result && this.label === toBeMatched.label;
         }
         if (result && !!toBeMatched.valueRef) {
             result = result && this.valueRef.match(toBeMatched.valueRef);
@@ -139,10 +139,10 @@ export class ValueAttribute extends MobxModelElementImpl implements FreNamedNode
 
     /**
      * Convenience method for reference 'valueRef'.
-     * Instead of returning a 'FreNodeReference<ValueDef>' object,
-     * it returns the referred 'ValueDef' object, if it can be found.
+     * Instead of returning a 'FreNodeReference<ValueTypeDef>' object,
+     * it returns the referred 'ValueTypeDef' object, if it can be found.
      */
-    get $valueRef(): ValueDef {
+    get $valueRef(): ValueTypeDef {
         if (!!this.valueRef) {
             return this.valueRef.referred;
         }

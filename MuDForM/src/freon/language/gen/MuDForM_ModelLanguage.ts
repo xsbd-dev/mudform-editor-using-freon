@@ -21,14 +21,20 @@ export function initializeLanguage() {
     FreLanguage.getInstance().name = "MuDForM_Model";
     FreLanguage.getInstance().id = "";
     FreLanguage.getInstance().addModel(describeMuDForM_Model());
-    FreLanguage.getInstance().addUnit(describeConceptDefinitions());
-    FreLanguage.getInstance().addConcept(describeValueDef());
-    FreLanguage.getInstance().addConcept(describeSimpleValueDef());
-    FreLanguage.getInstance().addConcept(describeEntityDef());
-    FreLanguage.getInstance().addConcept(describeTransitionDef());
+    FreLanguage.getInstance().addUnit(describeConceptTypeDefinitions());
+    FreLanguage.getInstance().addConcept(describeValueTypeDef());
+    FreLanguage.getInstance().addConcept(describeValueType());
+    FreLanguage.getInstance().addConcept(describeSimpleValueType());
+    FreLanguage.getInstance().addConcept(describeDatomicType());
+    FreLanguage.getInstance().addConcept(describeProductValueType());
+    FreLanguage.getInstance().addConcept(describeSumValueType());
+    FreLanguage.getInstance().addConcept(describeTypeField());
+    FreLanguage.getInstance().addConcept(describeListValueType());
+    FreLanguage.getInstance().addConcept(describeValueTypeReference());
+    FreLanguage.getInstance().addConcept(describeEntityTypeDef());
+    FreLanguage.getInstance().addConcept(describeTransitionTypeDef());
     FreLanguage.getInstance().addConcept(describeValueAttribute());
     FreLanguage.getInstance().addConcept(describeReferenceAttribute());
-    FreLanguage.getInstance().addConcept(describeDbType());
 
     FreLanguage.getInstance().addReferenceCreator((name: string, type: string) => {
         return !!name ? FreNodeReference.create(name, type) : null;
@@ -66,7 +72,7 @@ function describeMuDForM_Model(): FreLanguageModel {
         name: "units",
         id: "-id-MuDForM_Model-units",
         key: "-key-MuDForM_Model-units",
-        type: "ConceptDefinitions",
+        type: "ConceptTypeDefinitions",
         isList: true,
         isPublic: true,
         isOptional: false,
@@ -77,28 +83,28 @@ function describeMuDForM_Model(): FreLanguageModel {
     return model;
 }
 
-function describeConceptDefinitions(): FreLanguageModelUnit {
+function describeConceptTypeDefinitions(): FreLanguageModelUnit {
     const modelunit: FreLanguageModelUnit = {
-        typeName: "ConceptDefinitions",
-        id: "-id-ConceptDefinitions",
-        key: "-key-ConceptDefinitions",
+        typeName: "ConceptTypeDefinitions",
+        id: "-id-ConceptTypeDefinitions",
+        key: "-key-ConceptTypeDefinitions",
         isNamedElement: true,
         language: "-key-MuDForM",
         fileExtension: "con",
         subConceptNames: [], // Nothing yet, but may change in the future
         constructor: (id?: string) => {
-            return new MyLanguage.ConceptDefinitions(id);
+            return new MyLanguage.ConceptTypeDefinitions(id);
         },
-        creator: (data: Partial<MyLanguage.ConceptDefinitions>) => {
-            return MyLanguage.ConceptDefinitions.create(data);
+        creator: (data: Partial<MyLanguage.ConceptTypeDefinitions>) => {
+            return MyLanguage.ConceptTypeDefinitions.create(data);
         },
         properties: new Map<string, FreLanguageProperty>(),
-        trigger: "ConceptDefinitions",
+        trigger: "ConceptTypeDefinitions",
     };
     modelunit.properties.set("name", {
         name: "name",
-        id: "-id-ConceptDefinitions-name",
-        key: "-key-ConceptDefinitions-name",
+        id: "-id-ConceptTypeDefinitions-name",
+        key: "-key-ConceptTypeDefinitions-name",
         type: "string",
         isList: false,
         isPublic: true,
@@ -106,11 +112,22 @@ function describeConceptDefinitions(): FreLanguageModelUnit {
         language: "-key-MuDForM",
         propertyKind: "primitive",
     });
-    modelunit.properties.set("simple_values", {
-        name: "simple_values",
-        id: "-id-ConceptDefinitions-simple_values",
-        key: "-key-ConceptDefinitions-simple_values",
-        type: "SimpleValueDef",
+    modelunit.properties.set("doc", {
+        name: "doc",
+        id: "-id-ConceptTypeDefinitions-doc",
+        key: "-key-ConceptTypeDefinitions-doc",
+        type: "string",
+        isList: false,
+        isPublic: true,
+        isOptional: false,
+        language: "-key-MuDForM",
+        propertyKind: "primitive",
+    });
+    modelunit.properties.set("values", {
+        name: "values",
+        id: "-id-ConceptTypeDefinitions-values",
+        key: "-key-ConceptTypeDefinitions-values",
+        type: "ValueTypeDef",
         isList: true,
         isPublic: true,
         isOptional: false,
@@ -119,9 +136,9 @@ function describeConceptDefinitions(): FreLanguageModelUnit {
     });
     modelunit.properties.set("entities", {
         name: "entities",
-        id: "-id-ConceptDefinitions-entities",
-        key: "-key-ConceptDefinitions-entities",
-        type: "EntityDef",
+        id: "-id-ConceptTypeDefinitions-entities",
+        key: "-key-ConceptTypeDefinitions-entities",
+        type: "EntityTypeDef",
         isList: true,
         isPublic: true,
         isOptional: false,
@@ -130,9 +147,9 @@ function describeConceptDefinitions(): FreLanguageModelUnit {
     });
     modelunit.properties.set("transitions", {
         name: "transitions",
-        id: "-id-ConceptDefinitions-transitions",
-        key: "-key-ConceptDefinitions-transitions",
-        type: "TransitionDef",
+        id: "-id-ConceptTypeDefinitions-transitions",
+        key: "-key-ConceptTypeDefinitions-transitions",
+        type: "TransitionTypeDef",
         isList: true,
         isPublic: true,
         isOptional: false,
@@ -143,80 +160,32 @@ function describeConceptDefinitions(): FreLanguageModelUnit {
     return modelunit;
 }
 
-function describeValueDef(): FreLanguageConcept {
+function describeValueTypeDef(): FreLanguageConcept {
     const concept: FreLanguageConcept = {
-        typeName: "ValueDef",
-        id: "-id-ValueDef",
-        key: "-key-ValueDef",
-        isAbstract: true,
-        isPublic: true,
-        isLimited: false,
-        instanceNames: [],
-        language: "-key-MuDForM",
-        isNamedElement: true,
-        trigger: "ValueDef",
-        constructor: (id?: string) => {
-            return null;
-        },
-        creator: (data: Partial<MyLanguage.ValueDef>) => {
-            return null;
-        },
-        properties: new Map<string, FreLanguageProperty>(),
-        baseName: null,
-        subConceptNames: ["SimpleValueDef"],
-    };
-    concept.properties.set("name", {
-        name: "name",
-        id: "-id-ValueDef-name",
-        key: "-key-ValueDef-name",
-        type: "string",
-        isList: false,
-        isOptional: false, // false,
-        isPublic: true,
-        language: "-key-MuDForM",
-        propertyKind: "primitive",
-    });
-
-    return concept;
-}
-
-function describeSimpleValueDef(): FreLanguageConcept {
-    const concept: FreLanguageConcept = {
-        typeName: "SimpleValueDef",
-        id: "-id-SimpleValueDef",
-        key: "-key-SimpleValueDef",
+        typeName: "ValueTypeDef",
+        id: "-id-ValueTypeDef",
+        key: "-key-ValueTypeDef",
         isAbstract: false,
         isPublic: true,
         isLimited: false,
         instanceNames: [],
         language: "-key-MuDForM",
         isNamedElement: true,
-        trigger: "SimpleValueDef",
+        trigger: "ValueTypeDef",
         constructor: (id?: string) => {
-            return new MyLanguage.SimpleValueDef(id);
+            return new MyLanguage.ValueTypeDef(id);
         },
-        creator: (data: Partial<MyLanguage.SimpleValueDef>) => {
-            return MyLanguage.SimpleValueDef.create(data);
+        creator: (data: Partial<MyLanguage.ValueTypeDef>) => {
+            return MyLanguage.ValueTypeDef.create(data);
         },
         properties: new Map<string, FreLanguageProperty>(),
-        baseName: "ValueDef",
+        baseName: null,
         subConceptNames: [],
     };
-    concept.properties.set("doc", {
-        name: "doc",
-        id: "-id-SimpleValueDef-doc",
-        key: "-key-SimpleValueDef-doc",
-        type: "string",
-        isList: false,
-        isOptional: false, // false,
-        isPublic: true,
-        language: "-key-MuDForM",
-        propertyKind: "primitive",
-    });
     concept.properties.set("name", {
         name: "name",
-        id: "-id-ValueDef-name",
-        key: "-key-ValueDef-name",
+        id: "-id-ValueTypeDef-name",
+        key: "-key-ValueTypeDef-name",
         type: "string",
         isList: false,
         isOptional: false, // false,
@@ -224,12 +193,86 @@ function describeSimpleValueDef(): FreLanguageConcept {
         language: "-key-MuDForM",
         propertyKind: "primitive",
     });
+    concept.properties.set("doc", {
+        name: "doc",
+        id: "-id-ValueTypeDef-doc",
+        key: "-key-ValueTypeDef-doc",
+        type: "string",
+        isList: false,
+        isOptional: false, // false,
+        isPublic: true,
+        language: "-key-MuDForM",
+        propertyKind: "primitive",
+    });
+    concept.properties.set("type", {
+        name: "type",
+        id: "-id-ValueTypeDef-type",
+        key: "-key-ValueTypeDef-type",
+        type: "ValueType",
+        isList: false,
+        isPublic: true,
+        isOptional: false,
+        language: "-key-MuDForM",
+        propertyKind: "part",
+    });
 
-    concept.properties.set("db_type", {
-        name: "db_type",
-        id: "-id-SimpleValueDef-db_type",
-        key: "-key-SimpleValueDef-db_type",
-        type: "DbType",
+    return concept;
+}
+
+function describeValueType(): FreLanguageConcept {
+    const concept: FreLanguageConcept = {
+        typeName: "ValueType",
+        id: "-id-ValueType",
+        key: "-key-ValueType",
+        isAbstract: true,
+        isPublic: false,
+        isLimited: false,
+        instanceNames: [],
+        language: "-key-MuDForM",
+        isNamedElement: false,
+        trigger: "ValueType",
+        constructor: (id?: string) => {
+            return null;
+        },
+        creator: (data: Partial<MyLanguage.ValueType>) => {
+            return null;
+        },
+        properties: new Map<string, FreLanguageProperty>(),
+        baseName: null,
+        subConceptNames: ["SimpleValueType", "ProductValueType", "SumValueType", "ListValueType", "ValueTypeReference"],
+    };
+
+    return concept;
+}
+
+function describeSimpleValueType(): FreLanguageConcept {
+    const concept: FreLanguageConcept = {
+        typeName: "SimpleValueType",
+        id: "-id-SimpleValueType",
+        key: "-key-SimpleValueType",
+        isAbstract: false,
+        isPublic: true,
+        isLimited: false,
+        instanceNames: [],
+        language: "-key-MuDForM",
+        isNamedElement: false,
+        trigger: "SimpleValueType",
+        constructor: (id?: string) => {
+            return new MyLanguage.SimpleValueType(id);
+        },
+        creator: (data: Partial<MyLanguage.SimpleValueType>) => {
+            return MyLanguage.SimpleValueType.create(data);
+        },
+        properties: new Map<string, FreLanguageProperty>(),
+        baseName: "ValueType",
+        subConceptNames: [],
+    };
+
+    concept.properties.set("primitive_type", {
+        name: "primitive_type",
+        id: "-id-SimpleValueType-primitive_type",
+        key: "-key-SimpleValueType-primitive_type",
+        type: "DatomicType",
         isList: false,
         isPublic: true,
         isOptional: false,
@@ -239,23 +282,37 @@ function describeSimpleValueDef(): FreLanguageConcept {
     return concept;
 }
 
-function describeEntityDef(): FreLanguageConcept {
+function describeDatomicType(): FreLanguageConcept {
     const concept: FreLanguageConcept = {
-        typeName: "EntityDef",
-        id: "-id-EntityDef",
-        key: "-key-EntityDef",
+        typeName: "DatomicType",
+        id: "-id-DatomicType",
+        key: "-key-DatomicType",
         isAbstract: false,
         isPublic: true,
-        isLimited: false,
-        instanceNames: [],
+        isLimited: true,
+        instanceNames: [
+            "bigdec",
+            "bigint",
+            "boolean",
+            "bytes",
+            "double",
+            "float",
+            "instant",
+            "keyword",
+            "long",
+            "string",
+            "symbol",
+            "uuid",
+            "uri",
+        ],
         language: "-key-MuDForM",
         isNamedElement: true,
-        trigger: "EntityDef",
+        trigger: "DatomicType",
         constructor: (id?: string) => {
-            return new MyLanguage.EntityDef(id);
+            return new MyLanguage.DatomicType(id);
         },
-        creator: (data: Partial<MyLanguage.EntityDef>) => {
-            return MyLanguage.EntityDef.create(data);
+        creator: (data: Partial<MyLanguage.DatomicType>) => {
+            return MyLanguage.DatomicType.create(data);
         },
         properties: new Map<string, FreLanguageProperty>(),
         baseName: null,
@@ -263,8 +320,244 @@ function describeEntityDef(): FreLanguageConcept {
     };
     concept.properties.set("name", {
         name: "name",
-        id: "-id-EntityDef-name",
-        key: "-key-EntityDef-name",
+        id: "-id-DatomicType-name",
+        key: "-key-DatomicType-name",
+        type: "string",
+        isList: false,
+        isOptional: false, // false,
+        isPublic: true,
+        language: "-key-MuDForM",
+        propertyKind: "primitive",
+    });
+
+    return concept;
+}
+
+function describeProductValueType(): FreLanguageConcept {
+    const concept: FreLanguageConcept = {
+        typeName: "ProductValueType",
+        id: "-id-ProductValueType",
+        key: "-key-ProductValueType",
+        isAbstract: false,
+        isPublic: true,
+        isLimited: false,
+        instanceNames: [],
+        language: "-key-MuDForM",
+        isNamedElement: false,
+        trigger: "ProductValueType",
+        constructor: (id?: string) => {
+            return new MyLanguage.ProductValueType(id);
+        },
+        creator: (data: Partial<MyLanguage.ProductValueType>) => {
+            return MyLanguage.ProductValueType.create(data);
+        },
+        properties: new Map<string, FreLanguageProperty>(),
+        baseName: "ValueType",
+        subConceptNames: [],
+    };
+
+    concept.properties.set("fields", {
+        name: "fields",
+        id: "-id-ProductValueType-fields",
+        key: "-key-ProductValueType-fields",
+        type: "TypeField",
+        isList: true,
+        isPublic: true,
+        isOptional: false,
+        language: "-key-MuDForM",
+        propertyKind: "part",
+    });
+
+    return concept;
+}
+
+function describeSumValueType(): FreLanguageConcept {
+    const concept: FreLanguageConcept = {
+        typeName: "SumValueType",
+        id: "-id-SumValueType",
+        key: "-key-SumValueType",
+        isAbstract: false,
+        isPublic: true,
+        isLimited: false,
+        instanceNames: [],
+        language: "-key-MuDForM",
+        isNamedElement: false,
+        trigger: "SumValueType",
+        constructor: (id?: string) => {
+            return new MyLanguage.SumValueType(id);
+        },
+        creator: (data: Partial<MyLanguage.SumValueType>) => {
+            return MyLanguage.SumValueType.create(data);
+        },
+        properties: new Map<string, FreLanguageProperty>(),
+        baseName: "ValueType",
+        subConceptNames: [],
+    };
+
+    concept.properties.set("fields", {
+        name: "fields",
+        id: "-id-SumValueType-fields",
+        key: "-key-SumValueType-fields",
+        type: "TypeField",
+        isList: true,
+        isPublic: true,
+        isOptional: false,
+        language: "-key-MuDForM",
+        propertyKind: "part",
+    });
+
+    return concept;
+}
+
+function describeTypeField(): FreLanguageConcept {
+    const concept: FreLanguageConcept = {
+        typeName: "TypeField",
+        id: "-id-TypeField",
+        key: "-key-TypeField",
+        isAbstract: false,
+        isPublic: true,
+        isLimited: false,
+        instanceNames: [],
+        language: "-key-MuDForM",
+        isNamedElement: false,
+        trigger: "TypeField",
+        constructor: (id?: string) => {
+            return new MyLanguage.TypeField(id);
+        },
+        creator: (data: Partial<MyLanguage.TypeField>) => {
+            return MyLanguage.TypeField.create(data);
+        },
+        properties: new Map<string, FreLanguageProperty>(),
+        baseName: null,
+        subConceptNames: [],
+    };
+    concept.properties.set("label", {
+        name: "label",
+        id: "-id-TypeField-label",
+        key: "-key-TypeField-label",
+        type: "string",
+        isList: false,
+        isOptional: false, // false,
+        isPublic: true,
+        language: "-key-MuDForM",
+        propertyKind: "primitive",
+    });
+    concept.properties.set("type", {
+        name: "type",
+        id: "-id-TypeField-type",
+        key: "-key-TypeField-type",
+        type: "ValueType",
+        isList: false,
+        isPublic: true,
+        isOptional: false,
+        language: "-key-MuDForM",
+        propertyKind: "part",
+    });
+
+    return concept;
+}
+
+function describeListValueType(): FreLanguageConcept {
+    const concept: FreLanguageConcept = {
+        typeName: "ListValueType",
+        id: "-id-ListValueType",
+        key: "-key-ListValueType",
+        isAbstract: false,
+        isPublic: true,
+        isLimited: false,
+        instanceNames: [],
+        language: "-key-MuDForM",
+        isNamedElement: false,
+        trigger: "ListValueType",
+        constructor: (id?: string) => {
+            return new MyLanguage.ListValueType(id);
+        },
+        creator: (data: Partial<MyLanguage.ListValueType>) => {
+            return MyLanguage.ListValueType.create(data);
+        },
+        properties: new Map<string, FreLanguageProperty>(),
+        baseName: "ValueType",
+        subConceptNames: [],
+    };
+
+    concept.properties.set("list", {
+        name: "list",
+        id: "-id-ListValueType-list",
+        key: "-key-ListValueType-list",
+        type: "ValueType",
+        isList: false,
+        isPublic: true,
+        isOptional: false,
+        language: "-key-MuDForM",
+        propertyKind: "part",
+    });
+
+    return concept;
+}
+
+function describeValueTypeReference(): FreLanguageConcept {
+    const concept: FreLanguageConcept = {
+        typeName: "ValueTypeReference",
+        id: "-id-ValueTypeReference",
+        key: "-key-ValueTypeReference",
+        isAbstract: false,
+        isPublic: true,
+        isLimited: false,
+        instanceNames: [],
+        language: "-key-MuDForM",
+        isNamedElement: false,
+        trigger: "ValueTypeReference",
+        constructor: (id?: string) => {
+            return new MyLanguage.ValueTypeReference(id);
+        },
+        creator: (data: Partial<MyLanguage.ValueTypeReference>) => {
+            return MyLanguage.ValueTypeReference.create(data);
+        },
+        properties: new Map<string, FreLanguageProperty>(),
+        baseName: "ValueType",
+        subConceptNames: [],
+    };
+
+    concept.properties.set("defRef", {
+        name: "defRef",
+        id: "-id-ValueTypeReference-defRef",
+        key: "-key-ValueTypeReference-defRef",
+        type: "ValueTypeDef",
+        isList: false,
+        isPublic: true,
+        isOptional: false,
+        language: "-key-MuDForM",
+        propertyKind: "reference",
+    });
+    return concept;
+}
+
+function describeEntityTypeDef(): FreLanguageConcept {
+    const concept: FreLanguageConcept = {
+        typeName: "EntityTypeDef",
+        id: "-id-EntityTypeDef",
+        key: "-key-EntityTypeDef",
+        isAbstract: false,
+        isPublic: true,
+        isLimited: false,
+        instanceNames: [],
+        language: "-key-MuDForM",
+        isNamedElement: true,
+        trigger: "EntityTypeDef",
+        constructor: (id?: string) => {
+            return new MyLanguage.EntityTypeDef(id);
+        },
+        creator: (data: Partial<MyLanguage.EntityTypeDef>) => {
+            return MyLanguage.EntityTypeDef.create(data);
+        },
+        properties: new Map<string, FreLanguageProperty>(),
+        baseName: null,
+        subConceptNames: [],
+    };
+    concept.properties.set("name", {
+        name: "name",
+        id: "-id-EntityTypeDef-name",
+        key: "-key-EntityTypeDef-name",
         type: "string",
         isList: false,
         isOptional: false, // false,
@@ -274,8 +567,8 @@ function describeEntityDef(): FreLanguageConcept {
     });
     concept.properties.set("doc", {
         name: "doc",
-        id: "-id-EntityDef-doc",
-        key: "-key-EntityDef-doc",
+        id: "-id-EntityTypeDef-doc",
+        key: "-key-EntityTypeDef-doc",
         type: "string",
         isList: false,
         isOptional: false, // false,
@@ -285,8 +578,8 @@ function describeEntityDef(): FreLanguageConcept {
     });
     concept.properties.set("properties", {
         name: "properties",
-        id: "-id-EntityDef-properties",
-        key: "-key-EntityDef-properties",
+        id: "-id-EntityTypeDef-properties",
+        key: "-key-EntityTypeDef-properties",
         type: "ValueAttribute",
         isList: true,
         isPublic: true,
@@ -296,8 +589,8 @@ function describeEntityDef(): FreLanguageConcept {
     });
     concept.properties.set("relations", {
         name: "relations",
-        id: "-id-EntityDef-relations",
-        key: "-key-EntityDef-relations",
+        id: "-id-EntityTypeDef-relations",
+        key: "-key-EntityTypeDef-relations",
         type: "ReferenceAttribute",
         isList: true,
         isPublic: true,
@@ -309,23 +602,23 @@ function describeEntityDef(): FreLanguageConcept {
     return concept;
 }
 
-function describeTransitionDef(): FreLanguageConcept {
+function describeTransitionTypeDef(): FreLanguageConcept {
     const concept: FreLanguageConcept = {
-        typeName: "TransitionDef",
-        id: "-id-TransitionDef",
-        key: "-key-TransitionDef",
+        typeName: "TransitionTypeDef",
+        id: "-id-TransitionTypeDef",
+        key: "-key-TransitionTypeDef",
         isAbstract: false,
         isPublic: true,
         isLimited: false,
         instanceNames: [],
         language: "-key-MuDForM",
         isNamedElement: true,
-        trigger: "TransitionDef",
+        trigger: "TransitionTypeDef",
         constructor: (id?: string) => {
-            return new MyLanguage.TransitionDef(id);
+            return new MyLanguage.TransitionTypeDef(id);
         },
-        creator: (data: Partial<MyLanguage.TransitionDef>) => {
-            return MyLanguage.TransitionDef.create(data);
+        creator: (data: Partial<MyLanguage.TransitionTypeDef>) => {
+            return MyLanguage.TransitionTypeDef.create(data);
         },
         properties: new Map<string, FreLanguageProperty>(),
         baseName: null,
@@ -333,8 +626,8 @@ function describeTransitionDef(): FreLanguageConcept {
     };
     concept.properties.set("name", {
         name: "name",
-        id: "-id-TransitionDef-name",
-        key: "-key-TransitionDef-name",
+        id: "-id-TransitionTypeDef-name",
+        key: "-key-TransitionTypeDef-name",
         type: "string",
         isList: false,
         isOptional: false, // false,
@@ -344,8 +637,8 @@ function describeTransitionDef(): FreLanguageConcept {
     });
     concept.properties.set("doc", {
         name: "doc",
-        id: "-id-TransitionDef-doc",
-        key: "-key-TransitionDef-doc",
+        id: "-id-TransitionTypeDef-doc",
+        key: "-key-TransitionTypeDef-doc",
         type: "string",
         isList: false,
         isOptional: false, // false,
@@ -355,8 +648,8 @@ function describeTransitionDef(): FreLanguageConcept {
     });
     concept.properties.set("parameters", {
         name: "parameters",
-        id: "-id-TransitionDef-parameters",
-        key: "-key-TransitionDef-parameters",
+        id: "-id-TransitionTypeDef-parameters",
+        key: "-key-TransitionTypeDef-parameters",
         type: "ValueAttribute",
         isList: true,
         isPublic: true,
@@ -366,8 +659,8 @@ function describeTransitionDef(): FreLanguageConcept {
     });
     concept.properties.set("involvements", {
         name: "involvements",
-        id: "-id-TransitionDef-involvements",
-        key: "-key-TransitionDef-involvements",
+        id: "-id-TransitionTypeDef-involvements",
+        key: "-key-TransitionTypeDef-involvements",
         type: "ReferenceAttribute",
         isList: true,
         isPublic: true,
@@ -389,7 +682,7 @@ function describeValueAttribute(): FreLanguageConcept {
         isLimited: false,
         instanceNames: [],
         language: "-key-MuDForM",
-        isNamedElement: true,
+        isNamedElement: false,
         trigger: "ValueAttribute",
         constructor: (id?: string) => {
             return new MyLanguage.ValueAttribute(id);
@@ -401,10 +694,10 @@ function describeValueAttribute(): FreLanguageConcept {
         baseName: null,
         subConceptNames: [],
     };
-    concept.properties.set("name", {
-        name: "name",
-        id: "-id-ValueAttribute-name",
-        key: "-key-ValueAttribute-name",
+    concept.properties.set("label", {
+        name: "label",
+        id: "-id-ValueAttribute-label",
+        key: "-key-ValueAttribute-label",
         type: "string",
         isList: false,
         isOptional: false, // false,
@@ -417,7 +710,7 @@ function describeValueAttribute(): FreLanguageConcept {
         name: "valueRef",
         id: "-id-ValueAttribute-valueRef",
         key: "-key-ValueAttribute-valueRef",
-        type: "ValueDef",
+        type: "ValueTypeDef",
         isList: false,
         isPublic: true,
         isOptional: false,
@@ -437,7 +730,7 @@ function describeReferenceAttribute(): FreLanguageConcept {
         isLimited: false,
         instanceNames: [],
         language: "-key-MuDForM",
-        isNamedElement: true,
+        isNamedElement: false,
         trigger: "ReferenceAttribute",
         constructor: (id?: string) => {
             return new MyLanguage.ReferenceAttribute(id);
@@ -449,10 +742,10 @@ function describeReferenceAttribute(): FreLanguageConcept {
         baseName: null,
         subConceptNames: [],
     };
-    concept.properties.set("name", {
-        name: "name",
-        id: "-id-ReferenceAttribute-name",
-        key: "-key-ReferenceAttribute-name",
+    concept.properties.set("label", {
+        name: "label",
+        id: "-id-ReferenceAttribute-label",
+        key: "-key-ReferenceAttribute-label",
         type: "string",
         isList: false,
         isOptional: false, // false,
@@ -465,63 +758,12 @@ function describeReferenceAttribute(): FreLanguageConcept {
         name: "entityRef",
         id: "-id-ReferenceAttribute-entityRef",
         key: "-key-ReferenceAttribute-entityRef",
-        type: "EntityDef",
+        type: "EntityTypeDef",
         isList: false,
         isPublic: true,
         isOptional: false,
         language: "-key-MuDForM",
         propertyKind: "reference",
     });
-    return concept;
-}
-
-function describeDbType(): FreLanguageConcept {
-    const concept: FreLanguageConcept = {
-        typeName: "DbType",
-        id: "-id-DbType",
-        key: "-key-DbType",
-        isAbstract: false,
-        isPublic: true,
-        isLimited: true,
-        instanceNames: [
-            "bigdec",
-            "bigint",
-            "boolean",
-            "bytes",
-            "double",
-            "float",
-            "instant",
-            "keyword",
-            "long",
-            "string",
-            "symbol",
-            "uuid",
-            "uri",
-        ],
-        language: "-key-MuDForM",
-        isNamedElement: true,
-        trigger: "DbType",
-        constructor: (id?: string) => {
-            return new MyLanguage.DbType(id);
-        },
-        creator: (data: Partial<MyLanguage.DbType>) => {
-            return MyLanguage.DbType.create(data);
-        },
-        properties: new Map<string, FreLanguageProperty>(),
-        baseName: null,
-        subConceptNames: [],
-    };
-    concept.properties.set("name", {
-        name: "name",
-        id: "-id-DbType-name",
-        key: "-key-DbType-name",
-        type: "string",
-        isList: false,
-        isOptional: false, // false,
-        isPublic: true,
-        language: "-key-MuDForM",
-        propertyKind: "primitive",
-    });
-
     return concept;
 }

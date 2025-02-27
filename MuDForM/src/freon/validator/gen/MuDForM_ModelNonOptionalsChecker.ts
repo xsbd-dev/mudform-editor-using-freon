@@ -2,14 +2,17 @@
 import { FreError, FreErrorSeverity, FreWriter, FreLanguageEnvironment } from "@freon4dsl/core";
 import {
     MuDForM_Model,
-    ConceptDefinitions,
-    ValueDef,
-    SimpleValueDef,
-    EntityDef,
-    TransitionDef,
+    ConceptTypeDefinitions,
+    ValueTypeDef,
+    SimpleValueType,
+    DatomicType,
+    TypeField,
+    ListValueType,
+    ValueTypeReference,
+    EntityTypeDef,
+    TransitionTypeDef,
     ValueAttribute,
     ReferenceAttribute,
-    DbType,
 } from "../../language/gen/index.js";
 import { MuDForM_ModelDefaultWorker } from "../../utils/gen/index.js";
 import { MuDForM_ModelCheckerInterface } from "./MuDForM_ModelValidator.js";
@@ -53,71 +56,7 @@ export class MuDForM_ModelNonOptionalsChecker extends MuDForM_ModelDefaultWorker
      *
      * @param modelelement
      */
-    public execBeforeConceptDefinitions(modelelement: ConceptDefinitions): boolean {
-        if (modelelement.name === null || modelelement.name === undefined || modelelement.name?.length === 0) {
-            this.errorList.push(
-                new FreError("Property 'name' must have a value", modelelement, modelelement.name, "name", FreErrorSeverity.Error),
-            );
-        }
-
-        return false;
-    }
-
-    /**
-     * Checks 'modelelement' before checking its children.
-     * Found errors are pushed onto 'errorlist'.
-     * If an error is found, it is considered 'fatal', which means that no other checks on
-     * 'modelelement' are performed.
-     *
-     * @param modelelement
-     */
-    public execBeforeValueDef(modelelement: ValueDef): boolean {
-        if (modelelement.name === null || modelelement.name === undefined || modelelement.name?.length === 0) {
-            this.errorList.push(
-                new FreError("Property 'name' must have a value", modelelement, modelelement.name, "name", FreErrorSeverity.Error),
-            );
-        }
-
-        return false;
-    }
-
-    /**
-     * Checks 'modelelement' before checking its children.
-     * Found errors are pushed onto 'errorlist'.
-     * If an error is found, it is considered 'fatal', which means that no other checks on
-     * 'modelelement' are performed.
-     *
-     * @param modelelement
-     */
-    public execBeforeSimpleValueDef(modelelement: SimpleValueDef): boolean {
-        if (modelelement.doc === null || modelelement.doc === undefined || modelelement.doc?.length === 0) {
-            this.errorList.push(
-                new FreError("Property 'doc' must have a value", modelelement, modelelement.name, "doc", FreErrorSeverity.Error),
-            );
-        }
-        if (modelelement.name === null || modelelement.name === undefined || modelelement.name?.length === 0) {
-            this.errorList.push(
-                new FreError("Property 'name' must have a value", modelelement, modelelement.name, "name", FreErrorSeverity.Error),
-            );
-        }
-        if (modelelement.db_type === null || modelelement.db_type === undefined) {
-            this.errorList.push(
-                new FreError("Property 'db_type' must have a value", modelelement, modelelement.name, "db_type", FreErrorSeverity.Error),
-            );
-        }
-
-        return false;
-    }
-
-    /**
-     * Checks 'modelelement' before checking its children.
-     * Found errors are pushed onto 'errorlist'.
-     * If an error is found, it is considered 'fatal', which means that no other checks on
-     * 'modelelement' are performed.
-     *
-     * @param modelelement
-     */
-    public execBeforeEntityDef(modelelement: EntityDef): boolean {
+    public execBeforeConceptTypeDefinitions(modelelement: ConceptTypeDefinitions): boolean {
         if (modelelement.name === null || modelelement.name === undefined || modelelement.name?.length === 0) {
             this.errorList.push(
                 new FreError("Property 'name' must have a value", modelelement, modelelement.name, "name", FreErrorSeverity.Error),
@@ -140,7 +79,155 @@ export class MuDForM_ModelNonOptionalsChecker extends MuDForM_ModelDefaultWorker
      *
      * @param modelelement
      */
-    public execBeforeTransitionDef(modelelement: TransitionDef): boolean {
+    public execBeforeValueTypeDef(modelelement: ValueTypeDef): boolean {
+        if (modelelement.name === null || modelelement.name === undefined || modelelement.name?.length === 0) {
+            this.errorList.push(
+                new FreError("Property 'name' must have a value", modelelement, modelelement.name, "name", FreErrorSeverity.Error),
+            );
+        }
+        if (modelelement.doc === null || modelelement.doc === undefined || modelelement.doc?.length === 0) {
+            this.errorList.push(
+                new FreError("Property 'doc' must have a value", modelelement, modelelement.name, "doc", FreErrorSeverity.Error),
+            );
+        }
+        if (modelelement.type === null || modelelement.type === undefined) {
+            this.errorList.push(
+                new FreError("Property 'type' must have a value", modelelement, modelelement.name, "type", FreErrorSeverity.Error),
+            );
+        }
+
+        return false;
+    }
+
+    /**
+     * Checks 'modelelement' before checking its children.
+     * Found errors are pushed onto 'errorlist'.
+     * If an error is found, it is considered 'fatal', which means that no other checks on
+     * 'modelelement' are performed.
+     *
+     * @param modelelement
+     */
+    public execBeforeSimpleValueType(modelelement: SimpleValueType): boolean {
+        if (modelelement.primitive_type === null || modelelement.primitive_type === undefined) {
+            this.errorList.push(
+                new FreError(
+                    "Property 'primitive_type' must have a value",
+                    modelelement,
+                    "unnamed",
+                    "primitive_type",
+                    FreErrorSeverity.Error,
+                ),
+            );
+        }
+
+        return false;
+    }
+
+    /**
+     * Checks 'modelelement' before checking its children.
+     * Found errors are pushed onto 'errorlist'.
+     * If an error is found, it is considered 'fatal', which means that no other checks on
+     * 'modelelement' are performed.
+     *
+     * @param modelelement
+     */
+    public execBeforeDatomicType(modelelement: DatomicType): boolean {
+        if (modelelement.name === null || modelelement.name === undefined || modelelement.name?.length === 0) {
+            this.errorList.push(
+                new FreError("Property 'name' must have a value", modelelement, modelelement.name, "name", FreErrorSeverity.Error),
+            );
+        }
+
+        return false;
+    }
+
+    /**
+     * Checks 'modelelement' before checking its children.
+     * Found errors are pushed onto 'errorlist'.
+     * If an error is found, it is considered 'fatal', which means that no other checks on
+     * 'modelelement' are performed.
+     *
+     * @param modelelement
+     */
+    public execBeforeTypeField(modelelement: TypeField): boolean {
+        if (modelelement.label === null || modelelement.label === undefined || modelelement.label?.length === 0) {
+            this.errorList.push(
+                new FreError("Property 'label' must have a value", modelelement, "unnamed", "label", FreErrorSeverity.Error),
+            );
+        }
+        if (modelelement.type === null || modelelement.type === undefined) {
+            this.errorList.push(new FreError("Property 'type' must have a value", modelelement, "unnamed", "type", FreErrorSeverity.Error));
+        }
+
+        return false;
+    }
+
+    /**
+     * Checks 'modelelement' before checking its children.
+     * Found errors are pushed onto 'errorlist'.
+     * If an error is found, it is considered 'fatal', which means that no other checks on
+     * 'modelelement' are performed.
+     *
+     * @param modelelement
+     */
+    public execBeforeListValueType(modelelement: ListValueType): boolean {
+        if (modelelement.list === null || modelelement.list === undefined) {
+            this.errorList.push(new FreError("Property 'list' must have a value", modelelement, "unnamed", "list", FreErrorSeverity.Error));
+        }
+
+        return false;
+    }
+
+    /**
+     * Checks 'modelelement' before checking its children.
+     * Found errors are pushed onto 'errorlist'.
+     * If an error is found, it is considered 'fatal', which means that no other checks on
+     * 'modelelement' are performed.
+     *
+     * @param modelelement
+     */
+    public execBeforeValueTypeReference(modelelement: ValueTypeReference): boolean {
+        if (modelelement.defRef === null || modelelement.defRef === undefined) {
+            this.errorList.push(
+                new FreError("Property 'defRef' must have a value", modelelement, "unnamed", "defRef", FreErrorSeverity.Error),
+            );
+        }
+
+        return false;
+    }
+
+    /**
+     * Checks 'modelelement' before checking its children.
+     * Found errors are pushed onto 'errorlist'.
+     * If an error is found, it is considered 'fatal', which means that no other checks on
+     * 'modelelement' are performed.
+     *
+     * @param modelelement
+     */
+    public execBeforeEntityTypeDef(modelelement: EntityTypeDef): boolean {
+        if (modelelement.name === null || modelelement.name === undefined || modelelement.name?.length === 0) {
+            this.errorList.push(
+                new FreError("Property 'name' must have a value", modelelement, modelelement.name, "name", FreErrorSeverity.Error),
+            );
+        }
+        if (modelelement.doc === null || modelelement.doc === undefined || modelelement.doc?.length === 0) {
+            this.errorList.push(
+                new FreError("Property 'doc' must have a value", modelelement, modelelement.name, "doc", FreErrorSeverity.Error),
+            );
+        }
+
+        return false;
+    }
+
+    /**
+     * Checks 'modelelement' before checking its children.
+     * Found errors are pushed onto 'errorlist'.
+     * If an error is found, it is considered 'fatal', which means that no other checks on
+     * 'modelelement' are performed.
+     *
+     * @param modelelement
+     */
+    public execBeforeTransitionTypeDef(modelelement: TransitionTypeDef): boolean {
         if (modelelement.name === null || modelelement.name === undefined || modelelement.name?.length === 0) {
             this.errorList.push(
                 new FreError("Property 'name' must have a value", modelelement, modelelement.name, "name", FreErrorSeverity.Error),
@@ -164,14 +251,14 @@ export class MuDForM_ModelNonOptionalsChecker extends MuDForM_ModelDefaultWorker
      * @param modelelement
      */
     public execBeforeValueAttribute(modelelement: ValueAttribute): boolean {
-        if (modelelement.name === null || modelelement.name === undefined || modelelement.name?.length === 0) {
+        if (modelelement.label === null || modelelement.label === undefined || modelelement.label?.length === 0) {
             this.errorList.push(
-                new FreError("Property 'name' must have a value", modelelement, modelelement.name, "name", FreErrorSeverity.Error),
+                new FreError("Property 'label' must have a value", modelelement, "unnamed", "label", FreErrorSeverity.Error),
             );
         }
         if (modelelement.valueRef === null || modelelement.valueRef === undefined) {
             this.errorList.push(
-                new FreError("Property 'valueRef' must have a value", modelelement, modelelement.name, "valueRef", FreErrorSeverity.Error),
+                new FreError("Property 'valueRef' must have a value", modelelement, "unnamed", "valueRef", FreErrorSeverity.Error),
             );
         }
 
@@ -187,38 +274,14 @@ export class MuDForM_ModelNonOptionalsChecker extends MuDForM_ModelDefaultWorker
      * @param modelelement
      */
     public execBeforeReferenceAttribute(modelelement: ReferenceAttribute): boolean {
-        if (modelelement.name === null || modelelement.name === undefined || modelelement.name?.length === 0) {
+        if (modelelement.label === null || modelelement.label === undefined || modelelement.label?.length === 0) {
             this.errorList.push(
-                new FreError("Property 'name' must have a value", modelelement, modelelement.name, "name", FreErrorSeverity.Error),
+                new FreError("Property 'label' must have a value", modelelement, "unnamed", "label", FreErrorSeverity.Error),
             );
         }
         if (modelelement.entityRef === null || modelelement.entityRef === undefined) {
             this.errorList.push(
-                new FreError(
-                    "Property 'entityRef' must have a value",
-                    modelelement,
-                    modelelement.name,
-                    "entityRef",
-                    FreErrorSeverity.Error,
-                ),
-            );
-        }
-
-        return false;
-    }
-
-    /**
-     * Checks 'modelelement' before checking its children.
-     * Found errors are pushed onto 'errorlist'.
-     * If an error is found, it is considered 'fatal', which means that no other checks on
-     * 'modelelement' are performed.
-     *
-     * @param modelelement
-     */
-    public execBeforeDbType(modelelement: DbType): boolean {
-        if (modelelement.name === null || modelelement.name === undefined || modelelement.name?.length === 0) {
-            this.errorList.push(
-                new FreError("Property 'name' must have a value", modelelement, modelelement.name, "name", FreErrorSeverity.Error),
+                new FreError("Property 'entityRef' must have a value", modelelement, "unnamed", "entityRef", FreErrorSeverity.Error),
             );
         }
 

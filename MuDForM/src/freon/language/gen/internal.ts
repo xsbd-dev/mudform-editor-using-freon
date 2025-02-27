@@ -9,12 +9,18 @@
  */
 
 export * from "./MuDForM_Model.js";
-export * from "./ConceptDefinitions.js";
-export * from "./ValueDef.js";
-export * from "./EntityDef.js";
-export * from "./TransitionDef.js";
+export * from "./ConceptTypeDefinitions.js";
+export * from "./ValueTypeDef.js";
+export * from "./ValueType.js";
+export * from "./DatomicType.js";
+export * from "./TypeField.js";
+export * from "./EntityTypeDef.js";
+export * from "./TransitionTypeDef.js";
 export * from "./ValueAttribute.js";
 export * from "./ReferenceAttribute.js";
-export * from "./DbType.js";
-export * from "./SimpleValueDef.js";
+export * from "./SimpleValueType.js";
+export * from "./ProductValueType.js";
+export * from "./SumValueType.js";
+export * from "./ListValueType.js";
+export * from "./ValueTypeReference.js";
 export * from "./MuDForM_ModelLanguage.js";

@@ -13,29 +13,29 @@ import { ValueAttribute, ReferenceAttribute } from "./internal.js";
 import { makeObservable, action } from "mobx";
 
 /**
- * Class EntityDef is the implementation of the concept with the same name in the language definition file.
+ * Class TransitionTypeDef is the implementation of the concept with the same name in the language definition file.
  * It uses mobx decorators to enable parts of the language environment, e.g. the editor, to react
  * to the changes in the state of its properties.
  */
-export class EntityDef extends MobxModelElementImpl implements FreNamedNode {
+export class TransitionTypeDef extends MobxModelElementImpl implements FreNamedNode {
     /**
      * A convenience method that creates an instance of this class
      * based on the properties defined in 'data'.
      * @param data partial object
      */
-    static create(data: Partial<EntityDef>): EntityDef {
-        const result = new EntityDef(data.$id);
+    static create(data: Partial<TransitionTypeDef>): TransitionTypeDef {
+        const result = new TransitionTypeDef(data.$id);
         if (!!data.name) {
             result.name = data.name;
         }
         if (!!data.doc) {
             result.doc = data.doc;
         }
-        if (!!data.properties) {
-            data.properties.forEach((x) => result.properties.push(x));
+        if (!!data.parameters) {
+            data.parameters.forEach((x) => result.parameters.push(x));
         }
-        if (!!data.relations) {
-            data.relations.forEach((x) => result.relations.push(x));
+        if (!!data.involvements) {
+            data.involvements.forEach((x) => result.involvements.push(x));
         }
         if (!!data.parseLocation) {
             result.parseLocation = data.parseLocation;
@@ -43,13 +43,13 @@ export class EntityDef extends MobxModelElementImpl implements FreNamedNode {
         return result;
     }
 
-    readonly $typename: string = "EntityDef"; // holds the metatype in the form of a string
+    readonly $typename: string = "TransitionTypeDef"; // holds the metatype in the form of a string
     $id: string = ""; // a unique identifier
     parseLocation: FreParseLocation; // if relevant, the location of this element within the source from which it is parsed
     name: string; // implementation of name
     doc: string; // implementation of doc
-    properties: ValueAttribute[]; // implementation of part 'properties'
-    relations: ReferenceAttribute[]; // implementation of part 'relations'
+    parameters: ValueAttribute[]; // implementation of part 'parameters'
+    involvements: ReferenceAttribute[]; // implementation of part 'involvements'
 
     constructor(id?: string) {
         super();
@@ -68,8 +68,8 @@ export class EntityDef extends MobxModelElementImpl implements FreNamedNode {
         // Both 'observablepart' and 'observablepartlist' change the get and set of the attribute
         // such that the parent-part relationship is consistently maintained,
         // and make sure the part is observable. In lists no 'null' or 'undefined' values are allowed.
-        observablepartlist(this, "properties");
-        observablepartlist(this, "relations");
+        observablepartlist(this, "parameters");
+        observablepartlist(this, "involvements");
 
         // Make copy method a mobx action
         makeObservable(this, {
@@ -121,19 +121,19 @@ export class EntityDef extends MobxModelElementImpl implements FreNamedNode {
     /**
      * A convenience method that copies this instance into a new object.
      */
-    copy(): EntityDef {
-        const result = new EntityDef();
+    copy(): TransitionTypeDef {
+        const result = new TransitionTypeDef();
         if (!!this.name) {
             result.name = this.name;
         }
         if (!!this.doc) {
             result.doc = this.doc;
         }
-        if (!!this.properties) {
-            this.properties.forEach((x) => result.properties.push(x.copy()));
+        if (!!this.parameters) {
+            this.parameters.forEach((x) => result.parameters.push(x.copy()));
         }
-        if (!!this.relations) {
-            this.relations.forEach((x) => result.relations.push(x.copy()));
+        if (!!this.involvements) {
+            this.involvements.forEach((x) => result.involvements.push(x.copy()));
         }
         return result;
     }
@@ -142,7 +142,7 @@ export class EntityDef extends MobxModelElementImpl implements FreNamedNode {
      * based on the properties defined in the partial.
      * @param toBeMatched
      */
-    public match(toBeMatched: Partial<EntityDef>): boolean {
+    public match(toBeMatched: Partial<TransitionTypeDef>): boolean {
         let result: boolean = true;
         if (result && toBeMatched.name !== null && toBeMatched.name !== undefined && toBeMatched.name.length > 0) {
             result = result && this.name === toBeMatched.name;
@@ -150,11 +150,11 @@ export class EntityDef extends MobxModelElementImpl implements FreNamedNode {
         if (result && toBeMatched.doc !== null && toBeMatched.doc !== undefined && toBeMatched.doc.length > 0) {
             result = result && this.doc === toBeMatched.doc;
         }
-        if (result && !!toBeMatched.properties) {
-            result = result && matchElementList(this.properties, toBeMatched.properties);
+        if (result && !!toBeMatched.parameters) {
+            result = result && matchElementList(this.parameters, toBeMatched.parameters);
         }
-        if (result && !!toBeMatched.relations) {
-            result = result && matchElementList(this.relations, toBeMatched.relations);
+        if (result && !!toBeMatched.involvements) {
+            result = result && matchElementList(this.involvements, toBeMatched.involvements);
         }
         return result;
     }

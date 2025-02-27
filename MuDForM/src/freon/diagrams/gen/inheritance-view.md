@@ -4,14 +4,34 @@
     classDiagram
     direction TD
     %% other possibilites: LR RL DT TB (same as TD)
-    class SimpleValueDef {
+    class SimpleValueType {
         
-        + string doc
+        
     }
-    class ValueDef {
+    class ValueType {
         <<abstract>>
-        + identifier name
+        
     }
-    ValueDef <|-- SimpleValueDef
+    class ProductValueType {
+        
+        
+    }
+    class SumValueType {
+        
+        
+    }
+    class ListValueType {
+        
+        
+    }
+    class ValueTypeReference {
+        
+        
+    }
+    ValueType <|-- SimpleValueType
+ValueType <|-- ProductValueType
+ValueType <|-- SumValueType
+ValueType <|-- ListValueType
+ValueType <|-- ValueTypeReference
 
 ```

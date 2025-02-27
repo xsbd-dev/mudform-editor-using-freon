@@ -3,12 +3,12 @@ import {
     MobxModelElementImpl,
     observableprim,
     observablepart,
-    FreNamedNode,
+    FreNode,
     FreParseLocation,
     FreNodeReference,
     FreUtils,
 } from "@freon4dsl/core";
-import { EntityDef } from "./internal.js";
+import { EntityTypeDef } from "./internal.js";
 
 import { makeObservable, action } from "mobx";
 
@@ -17,7 +17,7 @@ import { makeObservable, action } from "mobx";
  * It uses mobx decorators to enable parts of the language environment, e.g. the editor, to react
  * to the changes in the state of its properties.
  */
-export class ReferenceAttribute extends MobxModelElementImpl implements FreNamedNode {
+export class ReferenceAttribute extends MobxModelElementImpl implements FreNode {
     /**
      * A convenience method that creates an instance of this class
      * based on the properties defined in 'data'.
@@ -25,8 +25,8 @@ export class ReferenceAttribute extends MobxModelElementImpl implements FreNamed
      */
     static create(data: Partial<ReferenceAttribute>): ReferenceAttribute {
         const result = new ReferenceAttribute(data.$id);
-        if (!!data.name) {
-            result.name = data.name;
+        if (!!data.label) {
+            result.label = data.label;
         }
         if (!!data.entityRef) {
             result.entityRef = data.entityRef;
@@ -40,9 +40,9 @@ export class ReferenceAttribute extends MobxModelElementImpl implements FreNamed
     readonly $typename: string = "ReferenceAttribute"; // holds the metatype in the form of a string
     $id: string = ""; // a unique identifier
     parseLocation: FreParseLocation; // if relevant, the location of this element within the source from which it is parsed
-    name: string; // implementation of name
+    label: string; // implementation of label
 
-    entityRef: FreNodeReference<EntityDef>; // implementation of reference 'entityRef'
+    entityRef: FreNodeReference<EntityTypeDef>; // implementation of reference 'entityRef'
 
     constructor(id?: string) {
         super();
@@ -53,8 +53,8 @@ export class ReferenceAttribute extends MobxModelElementImpl implements FreNamed
         }
         // Both 'observableprim' and 'observableprimlist' change the get and set of the attribute
         // such that the part is observable. In lists no 'null' or 'undefined' values are allowed.
-        observableprim(this, "name");
-        this.name = "";
+        observableprim(this, "label");
+        this.label = "";
 
         // Both 'observablepart' and 'observablepartlist' change the get and set of the attribute
         // such that the parent-part relationship is consistently maintained,
@@ -113,8 +113,8 @@ export class ReferenceAttribute extends MobxModelElementImpl implements FreNamed
      */
     copy(): ReferenceAttribute {
         const result = new ReferenceAttribute();
-        if (!!this.name) {
-            result.name = this.name;
+        if (!!this.label) {
+            result.label = this.label;
         }
         if (!!this.entityRef) {
             result.entityRef = this.entityRef.copy();
@@ -128,8 +128,8 @@ export class ReferenceAttribute extends MobxModelElementImpl implements FreNamed
      */
     public match(toBeMatched: Partial<ReferenceAttribute>): boolean {
         let result: boolean = true;
-        if (result && toBeMatched.name !== null && toBeMatched.name !== undefined && toBeMatched.name.length > 0) {
-            result = result && this.name === toBeMatched.name;
+        if (result && toBeMatched.label !== null && toBeMatched.label !== undefined && toBeMatched.label.length > 0) {
+            result = result && this.label === toBeMatched.label;
         }
         if (result && !!toBeMatched.entityRef) {
             result = result && this.entityRef.match(toBeMatched.entityRef);
@@ -139,10 +139,10 @@ export class ReferenceAttribute extends MobxModelElementImpl implements FreNamed
 
     /**
      * Convenience method for reference 'entityRef'.
-     * Instead of returning a 'FreNodeReference<EntityDef>' object,
-     * it returns the referred 'EntityDef' object, if it can be found.
+     * Instead of returning a 'FreNodeReference<EntityTypeDef>' object,
+     * it returns the referred 'EntityTypeDef' object, if it can be found.
      */
-    get $entityRef(): EntityDef {
+    get $entityRef(): EntityTypeDef {
         if (!!this.entityRef) {
             return this.entityRef.referred;
         }

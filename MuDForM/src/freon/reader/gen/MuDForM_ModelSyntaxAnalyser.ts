@@ -6,7 +6,7 @@ import SPPTBranch = net.akehurst.language.api.sppt.SPPTBranch;
 import SPPTLeaf = net.akehurst.language.api.sppt.SPPTLeaf;
 import SPPTNode = net.akehurst.language.api.sppt.SPPTNode;
 import { FreNamedNode, FreParseLocation, FreNodeReference } from "@freon4dsl/core";
-import { ConceptDefinitionsSyntaxAnalyserPart, MuDForM_ModelCommonSyntaxAnalyserPart } from "./index.js";
+import { ConceptTypeDefinitionsSyntaxAnalyserPart, MuDForM_ModelCommonSyntaxAnalyserPart } from "./index.js";
 
 /**
  *   Class MuDForM_ModelSyntaxAnalyser is the main syntax analyser.
@@ -17,7 +17,9 @@ import { ConceptDefinitionsSyntaxAnalyserPart, MuDForM_ModelCommonSyntaxAnalyser
 export class MuDForM_ModelSyntaxAnalyser implements SyntaxAnalyser {
     sourceName: string = "";
     locationMap: any;
-    private _unit_ConceptDefinitions_analyser: ConceptDefinitionsSyntaxAnalyserPart = new ConceptDefinitionsSyntaxAnalyserPart(this);
+    private _unit_ConceptTypeDefinitions_analyser: ConceptTypeDefinitionsSyntaxAnalyserPart = new ConceptTypeDefinitionsSyntaxAnalyserPart(
+        this,
+    );
     private _unit_common_analyser: MuDForM_ModelCommonSyntaxAnalyserPart = new MuDForM_ModelCommonSyntaxAnalyserPart(this);
 
     clear(): void {
@@ -82,20 +84,34 @@ export class MuDForM_ModelSyntaxAnalyser implements SyntaxAnalyser {
 
     private transformSharedPackedParseTreeBranch(branch: SPPTBranch): any {
         const brName: string = branch.name;
-        if ("ConceptDefinitions" === brName) {
-            return this._unit_ConceptDefinitions_analyser.transformConceptDefinitions(branch);
-        } else if ("SimpleValueDef" === brName) {
-            return this._unit_ConceptDefinitions_analyser.transformSimpleValueDef(branch);
-        } else if ("EntityDef" === brName) {
-            return this._unit_ConceptDefinitions_analyser.transformEntityDef(branch);
+        if ("ConceptTypeDefinitions" === brName) {
+            return this._unit_ConceptTypeDefinitions_analyser.transformConceptTypeDefinitions(branch);
+        } else if ("ValueTypeDef" === brName) {
+            return this._unit_ConceptTypeDefinitions_analyser.transformValueTypeDef(branch);
+        } else if ("SimpleValueType" === brName) {
+            return this._unit_ConceptTypeDefinitions_analyser.transformSimpleValueType(branch);
+        } else if ("ProductValueType" === brName) {
+            return this._unit_ConceptTypeDefinitions_analyser.transformProductValueType(branch);
+        } else if ("TypeField" === brName) {
+            return this._unit_ConceptTypeDefinitions_analyser.transformTypeField(branch);
+        } else if ("SumValueType" === brName) {
+            return this._unit_ConceptTypeDefinitions_analyser.transformSumValueType(branch);
+        } else if ("ListValueType" === brName) {
+            return this._unit_ConceptTypeDefinitions_analyser.transformListValueType(branch);
+        } else if ("ValueTypeReference" === brName) {
+            return this._unit_ConceptTypeDefinitions_analyser.transformValueTypeReference(branch);
+        } else if ("EntityTypeDef" === brName) {
+            return this._unit_ConceptTypeDefinitions_analyser.transformEntityTypeDef(branch);
         } else if ("ValueAttribute" === brName) {
-            return this._unit_ConceptDefinitions_analyser.transformValueAttribute(branch);
+            return this._unit_ConceptTypeDefinitions_analyser.transformValueAttribute(branch);
         } else if ("ReferenceAttribute" === brName) {
-            return this._unit_ConceptDefinitions_analyser.transformReferenceAttribute(branch);
-        } else if ("TransitionDef" === brName) {
-            return this._unit_ConceptDefinitions_analyser.transformTransitionDef(branch);
-        } else if ("DbType" === brName) {
-            return this._unit_ConceptDefinitions_analyser.transformDbType(branch);
+            return this._unit_ConceptTypeDefinitions_analyser.transformReferenceAttribute(branch);
+        } else if ("TransitionTypeDef" === brName) {
+            return this._unit_ConceptTypeDefinitions_analyser.transformTransitionTypeDef(branch);
+        } else if ("ValueType" === brName) {
+            return this._unit_ConceptTypeDefinitions_analyser.transformValueType(branch);
+        } else if ("DatomicType" === brName) {
+            return this._unit_ConceptTypeDefinitions_analyser.transformDatomicType(branch);
         } else if ("__fre_reference" === brName) {
             return this.transform__fre_reference(branch);
         } else {

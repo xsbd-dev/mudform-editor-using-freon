@@ -23,14 +23,20 @@ import {
 } from "@freon4dsl/core";
 
 import {
-    ValueDef,
-    SimpleValueDef,
-    EntityDef,
-    TransitionDef,
+    ValueTypeDef,
+    ValueType,
+    SimpleValueType,
+    DatomicType,
+    ProductValueType,
+    SumValueType,
+    TypeField,
+    ListValueType,
+    ValueTypeReference,
+    EntityTypeDef,
+    TransitionTypeDef,
     ValueAttribute,
     ReferenceAttribute,
-    DbType,
-    ConceptDefinitions,
+    ConceptTypeDefinitions,
 } from "../../language/gen/index.js";
 
 /**

@@ -37,8 +37,8 @@ export class MuDForM_ModelModelUnitReader implements FreReader {
         this.analyser.sourceName = sourceName;
         let startRule: string = "";
         // choose the correct parser
-        if (metatype === "ConceptDefinitions") {
-            startRule = "ConceptDefinitions";
+        if (metatype === "ConceptTypeDefinitions") {
+            startRule = "ConceptTypeDefinitions";
         }
 
         // parse the input

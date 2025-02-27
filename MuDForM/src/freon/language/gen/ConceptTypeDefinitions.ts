@@ -8,28 +8,31 @@ import {
     FreUtils,
     matchElementList,
 } from "@freon4dsl/core";
-import { SimpleValueDef, EntityDef, TransitionDef } from "./internal.js";
+import { ValueTypeDef, EntityTypeDef, TransitionTypeDef } from "./internal.js";
 
 import { makeObservable, action } from "mobx";
 
 /**
- * Class ConceptDefinitions is the implementation of the model unit with the same name in the language definition file.
+ * Class ConceptTypeDefinitions is the implementation of the model unit with the same name in the language definition file.
  * It uses mobx decorators to enable parts of the language environment, e.g. the editor, to react
  * to any changes in the state of its properties.
  */
-export class ConceptDefinitions extends MobxModelElementImpl implements FreModelUnit {
+export class ConceptTypeDefinitions extends MobxModelElementImpl implements FreModelUnit {
     /**
      * A convenience method that creates an instance of this class
      * based on the properties defined in 'data'.
      * @param data partial object
      */
-    static create(data: Partial<ConceptDefinitions>): ConceptDefinitions {
-        const result = new ConceptDefinitions(data.$id);
+    static create(data: Partial<ConceptTypeDefinitions>): ConceptTypeDefinitions {
+        const result = new ConceptTypeDefinitions(data.$id);
         if (!!data.name) {
             result.name = data.name;
         }
-        if (!!data.simple_values) {
-            data.simple_values.forEach((x) => result.simple_values.push(x));
+        if (!!data.doc) {
+            result.doc = data.doc;
+        }
+        if (!!data.values) {
+            data.values.forEach((x) => result.values.push(x));
         }
         if (!!data.entities) {
             data.entities.forEach((x) => result.entities.push(x));
@@ -44,13 +47,14 @@ export class ConceptDefinitions extends MobxModelElementImpl implements FreModel
     }
 
     fileExtension: string = "";
-    readonly $typename: string = "ConceptDefinitions"; // holds the metatype in the form of a string
+    readonly $typename: string = "ConceptTypeDefinitions"; // holds the metatype in the form of a string
     $id: string = ""; // a unique identifier
     parseLocation: FreParseLocation; // if relevant, the location of this element within the source from which it is parsed
     name: string; // implementation of name
-    simple_values: SimpleValueDef[]; // implementation of part 'simple_values'
-    entities: EntityDef[]; // implementation of part 'entities'
-    transitions: TransitionDef[]; // implementation of part 'transitions'
+    doc: string; // implementation of doc
+    values: ValueTypeDef[]; // implementation of part 'values'
+    entities: EntityTypeDef[]; // implementation of part 'entities'
+    transitions: TransitionTypeDef[]; // implementation of part 'transitions'
 
     constructor(id?: string) {
         super();
@@ -63,11 +67,13 @@ export class ConceptDefinitions extends MobxModelElementImpl implements FreModel
         // such that the part is observable. In lists no 'null' or 'undefined' values are allowed.
         observableprim(this, "name");
         this.name = "";
+        observableprim(this, "doc");
+        this.doc = "";
 
         // Both 'observablepart' and 'observablepartlist' change the get and set of the attribute
         // such that the parent-part relationship is consistently maintained,
         // and make sure the part is observable. In lists no 'null' or 'undefined' values are allowed.
-        observablepartlist(this, "simple_values");
+        observablepartlist(this, "values");
         observablepartlist(this, "entities");
         observablepartlist(this, "transitions");
 
@@ -121,13 +127,16 @@ export class ConceptDefinitions extends MobxModelElementImpl implements FreModel
     /**
      * A convenience method that copies this instance into a new object.
      */
-    copy(): ConceptDefinitions {
-        const result = new ConceptDefinitions();
+    copy(): ConceptTypeDefinitions {
+        const result = new ConceptTypeDefinitions();
         if (!!this.name) {
             result.name = this.name;
         }
-        if (!!this.simple_values) {
-            this.simple_values.forEach((x) => result.simple_values.push(x.copy()));
+        if (!!this.doc) {
+            result.doc = this.doc;
+        }
+        if (!!this.values) {
+            this.values.forEach((x) => result.values.push(x.copy()));
         }
         if (!!this.entities) {
             this.entities.forEach((x) => result.entities.push(x.copy()));
@@ -142,13 +151,16 @@ export class ConceptDefinitions extends MobxModelElementImpl implements FreModel
      * based on the properties defined in the partial.
      * @param toBeMatched
      */
-    public match(toBeMatched: Partial<ConceptDefinitions>): boolean {
+    public match(toBeMatched: Partial<ConceptTypeDefinitions>): boolean {
         let result: boolean = true;
         if (result && toBeMatched.name !== null && toBeMatched.name !== undefined && toBeMatched.name.length > 0) {
             result = result && this.name === toBeMatched.name;
         }
-        if (result && !!toBeMatched.simple_values) {
-            result = result && matchElementList(this.simple_values, toBeMatched.simple_values);
+        if (result && toBeMatched.doc !== null && toBeMatched.doc !== undefined && toBeMatched.doc.length > 0) {
+            result = result && this.doc === toBeMatched.doc;
+        }
+        if (result && !!toBeMatched.values) {
+            result = result && matchElementList(this.values, toBeMatched.values);
         }
         if (result && !!toBeMatched.entities) {
             result = result && matchElementList(this.entities, toBeMatched.entities);

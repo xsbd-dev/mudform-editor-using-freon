@@ -8,12 +8,18 @@ import { MuDForM_ModelInterpreter } from "../MuDForM_ModelInterpreter.js";
 export function MuDForM_ModelInterpreterInit(main: IMainInterpreter) {
     const interpreter = new MuDForM_ModelInterpreter(main);
 
-    main.registerFunction("ValueDef", interpreter.evalValueDef);
-    main.registerFunction("SimpleValueDef", interpreter.evalSimpleValueDef);
-    main.registerFunction("EntityDef", interpreter.evalEntityDef);
-    main.registerFunction("TransitionDef", interpreter.evalTransitionDef);
+    main.registerFunction("ValueTypeDef", interpreter.evalValueTypeDef);
+    main.registerFunction("ValueType", interpreter.evalValueType);
+    main.registerFunction("SimpleValueType", interpreter.evalSimpleValueType);
+    main.registerFunction("DatomicType", interpreter.evalDatomicType);
+    main.registerFunction("ProductValueType", interpreter.evalProductValueType);
+    main.registerFunction("SumValueType", interpreter.evalSumValueType);
+    main.registerFunction("TypeField", interpreter.evalTypeField);
+    main.registerFunction("ListValueType", interpreter.evalListValueType);
+    main.registerFunction("ValueTypeReference", interpreter.evalValueTypeReference);
+    main.registerFunction("EntityTypeDef", interpreter.evalEntityTypeDef);
+    main.registerFunction("TransitionTypeDef", interpreter.evalTransitionTypeDef);
     main.registerFunction("ValueAttribute", interpreter.evalValueAttribute);
     main.registerFunction("ReferenceAttribute", interpreter.evalReferenceAttribute);
-    main.registerFunction("DbType", interpreter.evalDbType);
-    main.registerFunction("ConceptDefinitions", interpreter.evalConceptDefinitions); // DONE
+    main.registerFunction("ConceptTypeDefinitions", interpreter.evalConceptTypeDefinitions); // DONE
 }

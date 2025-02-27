@@ -7,22 +7,50 @@ export const MuDForM_ModelGrammarStr = `
 namespace MuDForM_ModelLanguage
 grammar MuDForM_ModelGrammar {
 
-// rules for "ConceptDefinitions"
-ConceptDefinitions = 'ConceptDefinitions' identifier '\{'
-	 'simple_values'
-	 SimpleValueDef*
-	 'entities'
-	 EntityDef*
-	 'transitions'
-	 TransitionDef*
-	 '}' ;
-
-SimpleValueDef = 'SimpleValueDef' identifier '\{'
+// rules for "ConceptTypeDefinitions"
+ConceptTypeDefinitions = 'ConceptTypeDefinitions' identifier '\{'
 	 'doc' stringLiteral
-	 'db_type' DbType
+	 'values'
+	 ValueTypeDef*
+	 'entities'
+	 EntityTypeDef*
+	 'transitions'
+	 TransitionTypeDef*
 	 '}' ;
 
-EntityDef = 'EntityDef' identifier '\{'
+ValueTypeDef = 'ValueTypeDef' identifier '\{'
+	 'doc' stringLiteral
+	 'type' ValueType
+	 '}' ;
+
+SimpleValueType = 'SimpleValueType' '\{'
+	 'primitive_type' DatomicType
+	 '}' ;
+
+ProductValueType = 'ProductValueType' '\{'
+	 'fields'
+	 TypeField*
+	 '}' ;
+
+TypeField = 'TypeField' '\{'
+	 'label' stringLiteral
+	 'type' ValueType
+	 '}' ;
+
+SumValueType = 'SumValueType' '\{'
+	 'fields'
+	 TypeField*
+	 '}' ;
+
+ListValueType = 'ListValueType' '\{'
+	 'list' ValueType
+	 '}' ;
+
+ValueTypeReference = 'ValueTypeReference' '\{'
+	 'defRef' __fre_reference
+	 '}' ;
+
+EntityTypeDef = 'EntityTypeDef' identifier '\{'
 	 'doc' stringLiteral
 	 'properties'
 	 ValueAttribute*
@@ -30,15 +58,17 @@ EntityDef = 'EntityDef' identifier '\{'
 	 ReferenceAttribute*
 	 '}' ;
 
-ValueAttribute = 'ValueAttribute' identifier '\{'
+ValueAttribute = 'ValueAttribute' '\{'
+	 'label' stringLiteral
 	 'valueRef' __fre_reference
 	 '}' ;
 
-ReferenceAttribute = 'ReferenceAttribute' identifier '\{'
+ReferenceAttribute = 'ReferenceAttribute' '\{'
+	 'label' stringLiteral
 	 'entityRef' __fre_reference
 	 '}' ;
 
-TransitionDef = 'TransitionDef' identifier '\{'
+TransitionTypeDef = 'TransitionTypeDef' identifier '\{'
 	 'doc' stringLiteral
 	 'parameters'
 	 ValueAttribute*
@@ -46,7 +76,13 @@ TransitionDef = 'TransitionDef' identifier '\{'
 	 ReferenceAttribute*
 	 '}' ;
 
-DbType = 'bigdec'
+ValueType = SimpleValueType 
+    | ProductValueType 
+    | SumValueType 
+    | ListValueType 
+    | ValueTypeReference  ;
+
+DatomicType = 'bigdec'
 	| 'bigint'
 	| 'boolean'
 	| 'bytes'
