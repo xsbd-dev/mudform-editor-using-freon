@@ -8,9 +8,14 @@ model MuDForM_Model {
 modelunit ConceptTypeDefinitions {
     name: identifier;
     doc?: string;
+    doc2?: Doc; 
     values: ValueTypeDef[];
     entities: EntityTypeDef[];
     transitions: TransitionTypeDef[];
+}
+
+concept Doc {
+    text: string;
 }
 
 concept ValueTypeDef {

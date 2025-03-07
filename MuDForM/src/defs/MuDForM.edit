@@ -1,0 +1,91 @@
+editor default
+
+TransitionTypeDef {[
+    ${self.name} involves ${self.involvements horizontal}
+    --  Parameters: ${self.parameters}
+]}
+
+ConceptTypeDefinitions {
+    [
+        Concept Type Definitions ${name}
+            [? hier is een doc ${doc2}]
+            values
+                ${values} 
+            entities 
+                ${entities}
+            transitions 
+                ${transitions} 
+    ]
+}
+
+ValueTypeDef {
+    [
+        Value TypeDef ${name} : ${type}
+            doc: ${doc}
+    ]
+}
+
+
+TypeField {
+    [
+        ${label} => ${type}
+    ]
+}
+
+SimpleValueType {
+    [
+        ${primitive_type}
+    ]
+}
+
+Doc {
+    [
+        doc ${text}
+    ]
+}
+ListValueType {
+    [
+        list of ${list}
+    ] 
+}
+
+ProductValueType {
+    [
+        product: ${fields}
+    ]
+}
+
+ValueTypeReference {
+    [
+        reference to ${defRef}
+    ]
+    referenceShortcut = ${defRef} 
+}
+
+SumValueType {
+    [
+        sum ${fields}
+    ]
+}
+
+ValueAttribute {
+    [
+        Attribute ${label} : ${valueRef}
+    ]
+}
+ReferenceAttribute {
+    [
+        Attribute ${label} : refers to ${entityRef}
+    ]
+}
+
+
+EntityTypeDef {
+    [
+        Entity ${name}
+            doc: ${doc}
+            properties ${properties}
+            relations ${relations} 
+    ]
+}
+
