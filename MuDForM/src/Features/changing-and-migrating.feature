@@ -39,6 +39,8 @@ Feature: Changing language AST and Migrating its models
         * the editor shows the new property with no value yet
         * Mo copies the value from the deprecated property to the new property
         * Mo sets the value of the deprecated property to null
+        * Question: howto set value to null
+        * Question: make sure deprecated/null properties are not saved.
 
         * OPEN ISSUE are we able to run a check that all deprecated properties have been processed?
 
