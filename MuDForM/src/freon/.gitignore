@@ -1,0 +1,4 @@
+# this folder only contains generated files.
+# generated files should all be ignored.
+*
+!.gitignore
