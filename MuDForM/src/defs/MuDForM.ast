@@ -2,94 +2,117 @@ language MuDForM
 
 model MuDForM_Model {
     name: identifier;
-    units: ConceptTypeDefinitions[];
+    units: TypeDefinitions[];
 }
 
-modelunit ConceptTypeDefinitions {
+modelunit TypeDefinitions {
     name: identifier;
-    doc?: string;
-    doc2?: Doc; 
-    values: ValueTypeDef[];
-    entities: EntityTypeDef[];
-    transitions: TransitionTypeDef[];
+    valuetypes: ValueTypeDef[];
+    entitytypes: EntityTypeDef[];
+    transitiontypes: TransitionTypeDef[];
+    requesttypes: RequestTypeDef[];
 }
 
-concept Doc {
+concept Description {
     text: string;
 }
 
 concept ValueTypeDef {
-  name: identifier;
-  doc?: string;
-  type: ValueType;
+    name: identifier;
+    doc?: Description;
+    valuetype: ValueType;
 }
 
 abstract concept ValueType {}
 
-concept SimpleValueType base ValueType {
-    primitive_type: DatomicType;
+abstract concept SimpleValueType base ValueType {}
+
+concept StringType base SimpleValueType {
+    constraint?: RegexConstraint;
 }
 
-limited DatomicType {
-  name: identifier;
-  bigdec;
-  bigint;
-  boolean;
-  bytes;
-  double;
-  float;
-  instant;
-  keyword;
-  long;
-  string;
-  symbol;
-  uuid;
-  uri;
+concept RegexConstraint {
+    regex: string;
 }
 
-concept ProductValueType base ValueType {
-    fields: TypeField[];
+concept KeywordType base SimpleValueType {
+    constraint?: KeywordConstraint; 
 }
 
-concept SumValueType base ValueType {
+concept KeywordConstraint {
+    values: string; // FIXME this is a stop-gap
+}
+
+concept DecimalType base SimpleValueType {
+}
+
+concept CompositeValueType base ValueType {
     fields: TypeField[];
 }
 
 concept TypeField {
     label: string;
-    type: ValueType;
-}
-
-concept ListValueType base ValueType {
-    list: ValueType; // this list is homogeneous
+    doc?: Description;
+    valuetype: ValueType;
 }
 
 concept ValueTypeReference base ValueType {
-    reference defRef: ValueTypeDef;
+    reference valuetype: ValueTypeDef;
 }
 
 concept EntityTypeDef {
     name: identifier;
-    doc?: string;
-    properties: ValueAttribute[];
-    relations: ReferenceAttribute[];
+    doc?: Description;
+    relations: Relation[];
+    properties: Property[];
+}
+
+concept Relation {
+    label: string;
+    doc?: Description;
+    reference entitytype: EntityTypeDef;
+    optional: boolean;
+    many: boolean;
+}
+
+concept Property {
+    label: string;
+    doc?: Description;
+    reference valuetype: ValueTypeDef;
+    identity: boolean;
+    optional: boolean;
+    many: boolean;
+    constraint?: string; // FIXME. string is a stop-gap.
 }
 
 concept TransitionTypeDef {
     name: identifier;
-    doc?: string;
-    parameters: ValueAttribute[];
-    involvements: ReferenceAttribute[];
+    doc?: Description;
+    involvings: Involving[];
+    parameters: Parameter[];
 }
 
-concept ValueAttribute {
+concept RequestTypeDef {
+    name: identifier;
+    doc?: Description;
+    involvings: Involving[];
+    parameters: Parameter[];
+}
+
+concept Involving {
     label: string;
-    reference valueRef: ValueTypeDef;
+    doc?: Description;
+    reference entitytype: EntityTypeDef;
+    instantiates: boolean;
+    optional: boolean;
+    many: boolean;
 }
 
-concept ReferenceAttribute {
+concept Parameter {
     label: string;
-    reference entityRef: EntityTypeDef;
+    doc?: Description;
+    reference valuetype: ValueTypeDef;
+    optional: boolean;
+    many: boolean;
+    constraint?: string; // FIXME. string is a stop-gap.
 }
-
-

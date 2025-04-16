@@ -1,91 +1,78 @@
 editor default
 
-TransitionTypeDef {[
-    ${self.name} involves ${self.involvements horizontal}
-    --  Parameters: ${self.parameters}
+TypeDefinitions {[
+    ValueType Definitions:
+        ${valuetypes}
+    EntityType Definitions:
+        ${entitytypes}
+    TransitionType Definitions:
+        ${transitiontypes}
+    RequestType Definitions:
+        ${requesttypes}
 ]}
 
-ConceptTypeDefinitions {
-    [
-        Concept Type Definitions ${name}
-            [? hier is een doc ${doc2}]
-            values
-                ${values} 
-            entities 
-                ${entities}
-            transitions 
-                ${transitions} 
-    ]
+Description {[[? // ${text}]]}
+
+ValueTypeDef {[
+    ${name} = ${valuetype} ${doc}
+]}
+
+StringType {[StringType ${constraint}]}
+
+RegexConstraint {[#${regex}]}
+
+DecimalType {[DecimalType]}
+
+KeywordType {[KeywordType ${constraint}]}
+
+KeywordConstraint {[${values}]}
+
+CompositeValueType {
+[
+    RECORD 
+       ${fields}
+]
 }
 
-ValueTypeDef {
-    [
-        Value TypeDef ${name} : ${type}
-            doc: ${doc}
-    ]
-}
-
-
-TypeField {
-    [
-        ${label} => ${type}
-    ]
-}
-
-SimpleValueType {
-    [
-        ${primitive_type}
-    ]
-}
-
-Doc {
-    [
-        doc ${text}
-    ]
-}
-ListValueType {
-    [
-        list of ${list}
-    ] 
-}
-
-ProductValueType {
-    [
-        product: ${fields}
-    ]
-}
+TypeField {[${label}: ${valuetype} ${doc}]}
 
 ValueTypeReference {
-    [
-        reference to ${defRef}
-    ]
-    referenceShortcut = ${defRef} 
+    [${valuetype}]
+    referenceShortcut = ${valuetype}
 }
 
-SumValueType {
-    [
-        sum ${fields}
-    ]
-}
+EntityTypeDef {[
+    ${name} ${doc}
+        relations: ${relations}
+        properties: ${properties}
+]}
 
-ValueAttribute {
-    [
-        Attribute ${label} : ${valueRef}
-    ]
-}
-ReferenceAttribute {
-    [
-        Attribute ${label} : refers to ${entityRef}
-    ]
-}
+Relation {[
+        ${label}: ${entitytype} -- ${optional checkbox} optional ${many checkbox} many ${doc}
+]}
 
-
-EntityTypeDef {
+Property {
     [
-        Entity ${name}
-            doc: ${doc}
-            properties ${properties}
-            relations ${relations} 
-    ]
-}
+        ${label}: ${valuetype} -- ${identity checkbox} identity ${optional checkbox} optional ${many checkbox} many ${doc}
+    ]}
 
+TransitionTypeDef {[
+    ${name} ${doc}
+        involving: ${involvings}
+        parameters: ${parameters}
+]}
+
+RequestTypeDef {[
+    ${name} ${doc}
+        involving: ${involvings}
+        parameters: ${parameters}
+]}
+
+Involving {[
+        ${label}: ${instantiates checkbox} NEW ${entitytype} -- ${optional checkbox} optional ${many checkbox} many ${doc}
+]}
+
+Parameter {
+    [
+        ${label}: ${valuetype} -- ${optional checkbox} optional ${many checkbox} many ${doc}
+    ]}
