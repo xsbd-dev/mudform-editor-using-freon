@@ -32,14 +32,9 @@
                   "key": "-key-TypeDefinitions-valuetypes"
                },
                "children": [
-                  "ID-6",
-                  "ID-13",
-                  "ID-17",
                   "ID-26",
                   "ID-9",
-                  "ID-18",
-                  "ID-27",
-                  "ID-31"
+                  "ID-18"
                ]
             },
             {
@@ -92,309 +87,6 @@
          "references": [],
          "annotations": [],
          "parent": null
-      },
-      {
-         "id": "ID-6",
-         "classifier": {
-            "language": "-key-MuDForM",
-            "version": "2023.1",
-            "key": "-key-ValueTypeDef"
-         },
-         "properties": [
-            {
-               "property": {
-                  "language": "-key-MuDForM",
-                  "version": "2023.1",
-                  "key": "-key-ValueTypeDef-name"
-               },
-               "value": "amount"
-            }
-         ],
-         "containments": [
-            {
-               "containment": {
-                  "language": "-key-MuDForM",
-                  "version": "2023.1",
-                  "key": "-key-ValueTypeDef-valuetype"
-               },
-               "children": [
-                  "ID-11"
-               ]
-            }
-         ],
-         "references": [],
-         "annotations": [],
-         "parent": "ID-5"
-      },
-      {
-         "id": "ID-11",
-         "classifier": {
-            "language": "-key-MuDForM",
-            "version": "2023.1",
-            "key": "-key-DecimalType"
-         },
-         "properties": [],
-         "containments": [],
-         "references": [],
-         "annotations": [],
-         "parent": "ID-6"
-      },
-      {
-         "id": "ID-13",
-         "classifier": {
-            "language": "-key-MuDForM",
-            "version": "2023.1",
-            "key": "-key-ValueTypeDef"
-         },
-         "properties": [
-            {
-               "property": {
-                  "language": "-key-MuDForM",
-                  "version": "2023.1",
-                  "key": "-key-ValueTypeDef-name"
-               },
-               "value": "currency"
-            }
-         ],
-         "containments": [
-            {
-               "containment": {
-                  "language": "-key-MuDForM",
-                  "version": "2023.1",
-                  "key": "-key-ValueTypeDef-valuetype"
-               },
-               "children": [
-                  "ID-15"
-               ]
-            }
-         ],
-         "references": [],
-         "annotations": [],
-         "parent": "ID-5"
-      },
-      {
-         "id": "ID-15",
-         "classifier": {
-            "language": "-key-MuDForM",
-            "version": "2023.1",
-            "key": "-key-KeywordType"
-         },
-         "properties": [],
-         "containments": [
-            {
-               "containment": {
-                  "language": "-key-MuDForM",
-                  "version": "2023.1",
-                  "key": "-key-KeywordType-constraint"
-               },
-               "children": [
-                  "ID-16"
-               ]
-            }
-         ],
-         "references": [],
-         "annotations": [],
-         "parent": "ID-13"
-      },
-      {
-         "id": "ID-16",
-         "classifier": {
-            "language": "-key-MuDForM",
-            "version": "2023.1",
-            "key": "-key-KeywordConstraint"
-         },
-         "properties": [
-            {
-               "property": {
-                  "language": "-key-MuDForM",
-                  "version": "2023.1",
-                  "key": "-key-KeywordConstraint-values"
-               },
-               "value": "bank.currency/eur, bank.currency/usd"
-            }
-         ],
-         "containments": [],
-         "references": [],
-         "annotations": [],
-         "parent": "ID-15"
-      },
-      {
-         "id": "ID-17",
-         "classifier": {
-            "language": "-key-MuDForM",
-            "version": "2023.1",
-            "key": "-key-ValueTypeDef"
-         },
-         "properties": [
-            {
-               "property": {
-                  "language": "-key-MuDForM",
-                  "version": "2023.1",
-                  "key": "-key-ValueTypeDef-name"
-               },
-               "value": "money"
-            }
-         ],
-         "containments": [
-            {
-               "containment": {
-                  "language": "-key-MuDForM",
-                  "version": "2023.1",
-                  "key": "-key-ValueTypeDef-valuetype"
-               },
-               "children": [
-                  "ID-19"
-               ]
-            }
-         ],
-         "references": [],
-         "annotations": [],
-         "parent": "ID-5"
-      },
-      {
-         "id": "ID-19",
-         "classifier": {
-            "language": "-key-MuDForM",
-            "version": "2023.1",
-            "key": "-key-CompositeValueType"
-         },
-         "properties": [],
-         "containments": [
-            {
-               "containment": {
-                  "language": "-key-MuDForM",
-                  "version": "2023.1",
-                  "key": "-key-CompositeValueType-fields"
-               },
-               "children": [
-                  "ID-20",
-                  "ID-23"
-               ]
-            }
-         ],
-         "references": [],
-         "annotations": [],
-         "parent": "ID-17"
-      },
-      {
-         "id": "ID-20",
-         "classifier": {
-            "language": "-key-MuDForM",
-            "version": "2023.1",
-            "key": "-key-TypeField"
-         },
-         "properties": [
-            {
-               "property": {
-                  "language": "-key-MuDForM",
-                  "version": "2023.1",
-                  "key": "-key-TypeField-label"
-               },
-               "value": "money>with>amount"
-            }
-         ],
-         "containments": [
-            {
-               "containment": {
-                  "language": "-key-MuDForM",
-                  "version": "2023.1",
-                  "key": "-key-TypeField-valuetype"
-               },
-               "children": [
-                  "ID-22"
-               ]
-            }
-         ],
-         "references": [],
-         "annotations": [],
-         "parent": "ID-19"
-      },
-      {
-         "id": "ID-22",
-         "classifier": {
-            "language": "-key-MuDForM",
-            "version": "2023.1",
-            "key": "-key-ValueTypeReference"
-         },
-         "properties": [],
-         "containments": [],
-         "references": [
-            {
-               "reference": {
-                  "language": "-key-MuDForM",
-                  "version": "2023.1",
-                  "key": "-key-ValueTypeReference-valuetype"
-               },
-               "targets": [
-                  {
-                     "resolveInfo": "amount",
-                     "reference": "ID-6"
-                  }
-               ]
-            }
-         ],
-         "annotations": [],
-         "parent": "ID-20"
-      },
-      {
-         "id": "ID-23",
-         "classifier": {
-            "language": "-key-MuDForM",
-            "version": "2023.1",
-            "key": "-key-TypeField"
-         },
-         "properties": [
-            {
-               "property": {
-                  "language": "-key-MuDForM",
-                  "version": "2023.1",
-                  "key": "-key-TypeField-label"
-               },
-               "value": "money>with>currency"
-            }
-         ],
-         "containments": [
-            {
-               "containment": {
-                  "language": "-key-MuDForM",
-                  "version": "2023.1",
-                  "key": "-key-TypeField-valuetype"
-               },
-               "children": [
-                  "ID-25"
-               ]
-            }
-         ],
-         "references": [],
-         "annotations": [],
-         "parent": "ID-19"
-      },
-      {
-         "id": "ID-25",
-         "classifier": {
-            "language": "-key-MuDForM",
-            "version": "2023.1",
-            "key": "-key-ValueTypeReference"
-         },
-         "properties": [],
-         "containments": [],
-         "references": [
-            {
-               "reference": {
-                  "language": "-key-MuDForM",
-                  "version": "2023.1",
-                  "key": "-key-ValueTypeReference-valuetype"
-               },
-               "targets": [
-                  {
-                     "resolveInfo": "currency",
-                     "reference": "ID-13"
-                  }
-               ]
-            }
-         ],
-         "annotations": [],
-         "parent": "ID-23"
       },
       {
          "id": "ID-26",
@@ -601,163 +293,6 @@
          "parent": "ID-18"
       },
       {
-         "id": "ID-27",
-         "classifier": {
-            "language": "-key-MuDForM",
-            "version": "2023.1",
-            "key": "-key-ValueTypeDef"
-         },
-         "properties": [
-            {
-               "property": {
-                  "language": "-key-MuDForM",
-                  "version": "2023.1",
-                  "key": "-key-ValueTypeDef-name"
-               },
-               "value": "full-name"
-            }
-         ],
-         "containments": [
-            {
-               "containment": {
-                  "language": "-key-MuDForM",
-                  "version": "2023.1",
-                  "key": "-key-ValueTypeDef-valuetype"
-               },
-               "children": [
-                  "ID-29"
-               ]
-            }
-         ],
-         "references": [],
-         "annotations": [],
-         "parent": "ID-5"
-      },
-      {
-         "id": "ID-29",
-         "classifier": {
-            "language": "-key-MuDForM",
-            "version": "2023.1",
-            "key": "-key-StringType"
-         },
-         "properties": [],
-         "containments": [
-            {
-               "containment": {
-                  "language": "-key-MuDForM",
-                  "version": "2023.1",
-                  "key": "-key-StringType-constraint"
-               },
-               "children": [
-                  "ID-30"
-               ]
-            }
-         ],
-         "references": [],
-         "annotations": [],
-         "parent": "ID-27"
-      },
-      {
-         "id": "ID-30",
-         "classifier": {
-            "language": "-key-MuDForM",
-            "version": "2023.1",
-            "key": "-key-RegexConstraint"
-         },
-         "properties": [
-            {
-               "property": {
-                  "language": "-key-MuDForM",
-                  "version": "2023.1",
-                  "key": "-key-RegexConstraint-regex"
-               },
-               "value": ".+"
-            }
-         ],
-         "containments": [],
-         "references": [],
-         "annotations": [],
-         "parent": "ID-29"
-      },
-      {
-         "id": "ID-31",
-         "classifier": {
-            "language": "-key-MuDForM",
-            "version": "2023.1",
-            "key": "-key-ValueTypeDef"
-         },
-         "properties": [
-            {
-               "property": {
-                  "language": "-key-MuDForM",
-                  "version": "2023.1",
-                  "key": "-key-ValueTypeDef-name"
-               },
-               "value": "email-address"
-            }
-         ],
-         "containments": [
-            {
-               "containment": {
-                  "language": "-key-MuDForM",
-                  "version": "2023.1",
-                  "key": "-key-ValueTypeDef-doc"
-               },
-               "children": [
-                  "ID-34"
-               ]
-            },
-            {
-               "containment": {
-                  "language": "-key-MuDForM",
-                  "version": "2023.1",
-                  "key": "-key-ValueTypeDef-valuetype"
-               },
-               "children": [
-                  "ID-33"
-               ]
-            }
-         ],
-         "references": [],
-         "annotations": [],
-         "parent": "ID-5"
-      },
-      {
-         "id": "ID-34",
-         "classifier": {
-            "language": "-key-MuDForM",
-            "version": "2023.1",
-            "key": "-key-Description"
-         },
-         "properties": [
-            {
-               "property": {
-                  "language": "-key-MuDForM",
-                  "version": "2023.1",
-                  "key": "-key-Description-text"
-               },
-               "value": "FIXME namespace FIXME regex"
-            }
-         ],
-         "containments": [],
-         "references": [],
-         "annotations": [],
-         "parent": "ID-31"
-      },
-      {
-         "id": "ID-33",
-         "classifier": {
-            "language": "-key-MuDForM",
-            "version": "2023.1",
-            "key": "-key-StringType"
-         },
-         "properties": [],
-         "containments": [],
-         "references": [],
-         "annotations": [],
-         "parent": "ID-31"
-      },
-      {
          "id": "ID-35",
          "classifier": {
             "language": "-key-MuDForM",
@@ -771,7 +306,7 @@
                   "version": "2023.1",
                   "key": "-key-EntityTypeDef-name"
                },
-               "value": "bank"
+               "value": "Bank"
             }
          ],
          "containments": [
@@ -812,7 +347,7 @@
                   "version": "2023.1",
                   "key": "-key-Property-label"
                },
-               "value": "bank>with>name"
+               "value": "name"
             },
             {
                "property": {
@@ -820,7 +355,7 @@
                   "version": "2023.1",
                   "key": "-key-Property-identity"
                },
-               "value": "true"
+               "value": "false"
             },
             {
                "property": {
@@ -880,7 +415,7 @@
                   "version": "2023.1",
                   "key": "-key-EntityTypeDef-name"
                },
-               "value": "customer"
+               "value": "Customer"
             }
          ],
          "containments": [
@@ -925,7 +460,7 @@
                   "version": "2023.1",
                   "key": "-key-Relation-label"
                },
-               "value": "customer>registered-at>bank"
+               "value": "registered-at"
             },
             {
                "property": {
@@ -933,7 +468,7 @@
                   "version": "2023.1",
                   "key": "-key-Relation-optional"
                },
-               "value": "false"
+               "value": "true"
             },
             {
                "property": {
@@ -954,7 +489,7 @@
                },
                "targets": [
                   {
-                     "resolveInfo": "bank",
+                     "resolveInfo": "Bank",
                      "reference": "ID-35"
                   }
                ]
@@ -977,7 +512,7 @@
                   "version": "2023.1",
                   "key": "-key-Property-label"
                },
-               "value": "customer>with>customer-id"
+               "value": "customer-id"
             },
             {
                "property": {
@@ -1045,7 +580,7 @@
                   "version": "2023.1",
                   "key": "-key-Property-label"
                },
-               "value": "customer>with>full-name"
+               "value": "full-name"
             },
             {
                "property": {
@@ -1113,7 +648,7 @@
                   "version": "2023.1",
                   "key": "-key-Property-label"
                },
-               "value": "customer>with>email-address"
+               "value": "email-address"
             },
             {
                "property": {
@@ -1181,7 +716,7 @@
                   "version": "2023.1",
                   "key": "-key-EntityTypeDef-name"
                },
-               "value": "account"
+               "value": "Account"
             }
          ],
          "containments": [
@@ -1225,7 +760,7 @@
                   "version": "2023.1",
                   "key": "-key-Relation-label"
                },
-               "value": "account>opened-for>customer"
+               "value": "opened-for"
             },
             {
                "property": {
@@ -1254,7 +789,7 @@
                },
                "targets": [
                   {
-                     "resolveInfo": "customer",
+                     "resolveInfo": "Customer",
                      "reference": "ID-39"
                   }
                ]
@@ -1277,7 +812,7 @@
                   "version": "2023.1",
                   "key": "-key-Property-label"
                },
-               "value": "account>with>ID-string"
+               "value": "account-ID"
             },
             {
                "property": {
@@ -1345,7 +880,7 @@
                   "version": "2023.1",
                   "key": "-key-Property-label"
                },
-               "value": "account>with>balance"
+               "value": "balance"
             },
             {
                "property": {
@@ -1413,7 +948,7 @@
                   "version": "2023.1",
                   "key": "-key-TransitionTypeDef-name"
                },
-               "value": "to-establish"
+               "value": "to-Establish"
             }
          ],
          "containments": [
@@ -1456,7 +991,7 @@
                   "version": "2023.1",
                   "key": "-key-Involving-label"
                },
-               "value": "to-establish>_>bank"
+               "value": "_>bank"
             },
             {
                "property": {
@@ -1493,7 +1028,7 @@
                },
                "targets": [
                   {
-                     "resolveInfo": "bank",
+                     "resolveInfo": "Bank",
                      "reference": "ID-35"
                   }
                ]
@@ -1516,7 +1051,7 @@
                   "version": "2023.1",
                   "key": "-key-Parameter-label"
                },
-               "value": "to-establish>with>name"
+               "value": "name"
             },
             {
                "property": {
@@ -1576,7 +1111,7 @@
                   "version": "2023.1",
                   "key": "-key-TransitionTypeDef-name"
                },
-               "value": "to-register"
+               "value": "to-Register"
             }
          ],
          "containments": [
@@ -1621,7 +1156,7 @@
                   "version": "2023.1",
                   "key": "-key-Involving-label"
                },
-               "value": "to-register>_>customer"
+               "value": "_>customer"
             },
             {
                "property": {
@@ -1629,7 +1164,7 @@
                   "version": "2023.1",
                   "key": "-key-Involving-instantiates"
                },
-               "value": "true"
+               "value": "false"
             },
             {
                "property": {
@@ -1658,7 +1193,7 @@
                },
                "targets": [
                   {
-                     "resolveInfo": "customer",
+                     "resolveInfo": "Customer",
                      "reference": "ID-39"
                   }
                ]
@@ -1681,7 +1216,7 @@
                   "version": "2023.1",
                   "key": "-key-Involving-label"
                },
-               "value": "to-register>at>bank"
+               "value": "at>bank"
             },
             {
                "property": {
@@ -1718,7 +1253,7 @@
                },
                "targets": [
                   {
-                     "resolveInfo": "bank",
+                     "resolveInfo": "Bank",
                      "reference": "ID-35"
                   }
                ]
@@ -1741,7 +1276,7 @@
                   "version": "2023.1",
                   "key": "-key-Parameter-label"
                },
-               "value": "to-register>with>full-name"
+               "value": "full-name"
             },
             {
                "property": {
@@ -1801,7 +1336,7 @@
                   "version": "2023.1",
                   "key": "-key-Parameter-label"
                },
-               "value": "to-register>with>email-address"
+               "value": "email-address"
             },
             {
                "property": {
@@ -1861,7 +1396,7 @@
                   "version": "2023.1",
                   "key": "-key-TransitionTypeDef-name"
                },
-               "value": "to-unregister"
+               "value": "to-Unregister"
             }
          ],
          "containments": [
@@ -1902,7 +1437,7 @@
                   "version": "2023.1",
                   "key": "-key-Involving-label"
                },
-               "value": "to-unregister>_>customer"
+               "value": "_>customer"
             },
             {
                "property": {
@@ -1939,7 +1474,7 @@
                },
                "targets": [
                   {
-                     "resolveInfo": "customer",
+                     "resolveInfo": "Customer",
                      "reference": "ID-39"
                   }
                ]
@@ -1962,7 +1497,7 @@
                   "version": "2023.1",
                   "key": "-key-TransitionTypeDef-name"
                },
-               "value": "to-open"
+               "value": "to-Open"
             }
          ],
          "containments": [
@@ -2004,7 +1539,7 @@
                   "version": "2023.1",
                   "key": "-key-Involving-label"
                },
-               "value": "to-open>_>account"
+               "value": "_>account"
             },
             {
                "property": {
@@ -2041,7 +1576,7 @@
                },
                "targets": [
                   {
-                     "resolveInfo": "account",
+                     "resolveInfo": "Account",
                      "reference": "ID-47"
                   }
                ]
@@ -2064,7 +1599,7 @@
                   "version": "2023.1",
                   "key": "-key-Involving-label"
                },
-               "value": "to-open>for>customer"
+               "value": "for>customer"
             },
             {
                "property": {
@@ -2101,7 +1636,7 @@
                },
                "targets": [
                   {
-                     "resolveInfo": "customer",
+                     "resolveInfo": "Customer",
                      "reference": "ID-39"
                   }
                ]
@@ -2124,7 +1659,7 @@
                   "version": "2023.1",
                   "key": "-key-TransitionTypeDef-name"
                },
-               "value": "to-close"
+               "value": "to-Close"
             }
          ],
          "containments": [
@@ -2165,7 +1700,7 @@
                   "version": "2023.1",
                   "key": "-key-Involving-label"
                },
-               "value": "to-close>_>account"
+               "value": "_>account"
             },
             {
                "property": {
@@ -2202,7 +1737,7 @@
                },
                "targets": [
                   {
-                     "resolveInfo": "account",
+                     "resolveInfo": "Account",
                      "reference": "ID-47"
                   }
                ]
@@ -2225,7 +1760,7 @@
                   "version": "2023.1",
                   "key": "-key-TransitionTypeDef-name"
                },
-               "value": "to-deposit"
+               "value": "to-Deposit"
             }
          ],
          "containments": [
@@ -2268,7 +1803,7 @@
                   "version": "2023.1",
                   "key": "-key-Involving-label"
                },
-               "value": "to-deposit>to>account"
+               "value": "to>account"
             },
             {
                "property": {
@@ -2305,7 +1840,7 @@
                },
                "targets": [
                   {
-                     "resolveInfo": "account",
+                     "resolveInfo": "Account",
                      "reference": "ID-47"
                   }
                ]
@@ -2328,7 +1863,7 @@
                   "version": "2023.1",
                   "key": "-key-Parameter-label"
                },
-               "value": "to-deposit>_>cash"
+               "value": "_>cash"
             },
             {
                "property": {
@@ -2388,7 +1923,7 @@
                   "version": "2023.1",
                   "key": "-key-TransitionTypeDef-name"
                },
-               "value": "to-withdraw"
+               "value": "to-Withdraw"
             }
          ],
          "containments": [
@@ -2431,7 +1966,7 @@
                   "version": "2023.1",
                   "key": "-key-Involving-label"
                },
-               "value": "to-withdraw>from>account"
+               "value": "from>account"
             },
             {
                "property": {
@@ -2468,7 +2003,7 @@
                },
                "targets": [
                   {
-                     "resolveInfo": "account",
+                     "resolveInfo": "Account",
                      "reference": "ID-47"
                   }
                ]
@@ -2491,7 +2026,7 @@
                   "version": "2023.1",
                   "key": "-key-Parameter-label"
                },
-               "value": "to-withdraw>_>cash"
+               "value": "_>cash"
             },
             {
                "property": {
@@ -2551,7 +2086,7 @@
                   "version": "2023.1",
                   "key": "-key-TransitionTypeDef-name"
                },
-               "value": "to-transfer"
+               "value": "to-Transfer"
             }
          ],
          "containments": [
@@ -2595,7 +2130,7 @@
                   "version": "2023.1",
                   "key": "-key-Involving-label"
                },
-               "value": "to-transfer>to>account"
+               "value": "to>account"
             },
             {
                "property": {
@@ -2632,7 +2167,7 @@
                },
                "targets": [
                   {
-                     "resolveInfo": "account",
+                     "resolveInfo": "Account",
                      "reference": "ID-47"
                   }
                ]
@@ -2655,7 +2190,7 @@
                   "version": "2023.1",
                   "key": "-key-Involving-label"
                },
-               "value": "to-transfer>from>account"
+               "value": "from>account"
             },
             {
                "property": {
@@ -2692,7 +2227,7 @@
                },
                "targets": [
                   {
-                     "resolveInfo": "account",
+                     "resolveInfo": "Account",
                      "reference": "ID-47"
                   }
                ]
@@ -2715,7 +2250,7 @@
                   "version": "2023.1",
                   "key": "-key-Parameter-label"
                },
-               "value": "to-transfer>_>money"
+               "value": "_>money"
             },
             {
                "property": {
@@ -2775,7 +2310,7 @@
                   "version": "2023.1",
                   "key": "-key-RequestTypeDef-name"
                },
-               "value": "request-to-register"
+               "value": "request-to-Register"
             }
          ],
          "containments": [
@@ -2820,7 +2355,7 @@
                   "version": "2023.1",
                   "key": "-key-Involving-label"
                },
-               "value": "request-to-register>_>customer"
+               "value": "_>customer"
             },
             {
                "property": {
@@ -2857,7 +2392,7 @@
                },
                "targets": [
                   {
-                     "resolveInfo": "customer",
+                     "resolveInfo": "Customer",
                      "reference": "ID-39"
                   }
                ]
@@ -2880,7 +2415,7 @@
                   "version": "2023.1",
                   "key": "-key-Involving-label"
                },
-               "value": "request-to-register>at>bank"
+               "value": "at>bank"
             },
             {
                "property": {
@@ -2918,7 +2453,7 @@
                "targets": [
                   {
                      "resolveInfo": "bank",
-                     "reference": "ID-35"
+                     "reference": null
                   }
                ]
             }
@@ -2940,7 +2475,7 @@
                   "version": "2023.1",
                   "key": "-key-Parameter-label"
                },
-               "value": "request-to-register>with>full-name"
+               "value": "full-name"
             },
             {
                "property": {
@@ -2948,7 +2483,7 @@
                   "version": "2023.1",
                   "key": "-key-Parameter-optional"
                },
-               "value": "false"
+               "value": "true"
             },
             {
                "property": {
@@ -3000,7 +2535,7 @@
                   "version": "2023.1",
                   "key": "-key-Parameter-label"
                },
-               "value": "request-to-register>with>email-address"
+               "value": "email-address"
             },
             {
                "property": {
@@ -3060,7 +2595,7 @@
                   "version": "2023.1",
                   "key": "-key-RequestTypeDef-name"
                },
-               "value": "request-to-unregister"
+               "value": "request-to-Unregister"
             }
          ],
          "containments": [
@@ -3101,7 +2636,7 @@
                   "version": "2023.1",
                   "key": "-key-Involving-label"
                },
-               "value": "request-to-unregister>_>customer"
+               "value": "_>customer"
             },
             {
                "property": {
@@ -3138,7 +2673,7 @@
                },
                "targets": [
                   {
-                     "resolveInfo": "customer",
+                     "resolveInfo": "Customer",
                      "reference": "ID-39"
                   }
                ]
@@ -3161,7 +2696,7 @@
                   "version": "2023.1",
                   "key": "-key-RequestTypeDef-name"
                },
-               "value": "request-to-open"
+               "value": "request-to-Open"
             }
          ],
          "containments": [
@@ -3203,7 +2738,7 @@
                   "version": "2023.1",
                   "key": "-key-Involving-label"
                },
-               "value": "request-to-open>_>account"
+               "value": "_>account"
             },
             {
                "property": {
@@ -3211,7 +2746,7 @@
                   "version": "2023.1",
                   "key": "-key-Involving-instantiates"
                },
-               "value": "true"
+               "value": "false"
             },
             {
                "property": {
@@ -3240,7 +2775,7 @@
                },
                "targets": [
                   {
-                     "resolveInfo": "account",
+                     "resolveInfo": "Account",
                      "reference": "ID-47"
                   }
                ]
@@ -3263,7 +2798,7 @@
                   "version": "2023.1",
                   "key": "-key-Involving-label"
                },
-               "value": "request-to-open>for>customer"
+               "value": "for>customer"
             },
             {
                "property": {
@@ -3300,7 +2835,7 @@
                },
                "targets": [
                   {
-                     "resolveInfo": "customer",
+                     "resolveInfo": "Customer",
                      "reference": "ID-39"
                   }
                ]
@@ -3323,7 +2858,7 @@
                   "version": "2023.1",
                   "key": "-key-RequestTypeDef-name"
                },
-               "value": "request-to-close"
+               "value": "request-to-Close"
             }
          ],
          "containments": [
@@ -3364,7 +2899,7 @@
                   "version": "2023.1",
                   "key": "-key-Involving-label"
                },
-               "value": "request-to-close>_>account"
+               "value": "_>account"
             },
             {
                "property": {
@@ -3401,7 +2936,7 @@
                },
                "targets": [
                   {
-                     "resolveInfo": "account",
+                     "resolveInfo": "Account",
                      "reference": "ID-47"
                   }
                ]
@@ -3424,7 +2959,7 @@
                   "version": "2023.1",
                   "key": "-key-RequestTypeDef-name"
                },
-               "value": "request-to-deposit"
+               "value": "request-to-Deposit"
             }
          ],
          "containments": [
@@ -3467,7 +3002,7 @@
                   "version": "2023.1",
                   "key": "-key-Involving-label"
                },
-               "value": "request-to-deposit>to>account"
+               "value": "to>account"
             },
             {
                "property": {
@@ -3504,7 +3039,7 @@
                },
                "targets": [
                   {
-                     "resolveInfo": "account",
+                     "resolveInfo": "Account",
                      "reference": "ID-47"
                   }
                ]
@@ -3527,7 +3062,7 @@
                   "version": "2023.1",
                   "key": "-key-Parameter-label"
                },
-               "value": "request-to-deposit>_>cash"
+               "value": "_>cash"
             },
             {
                "property": {
@@ -3587,7 +3122,7 @@
                   "version": "2023.1",
                   "key": "-key-RequestTypeDef-name"
                },
-               "value": "request-to-withdraw"
+               "value": "request-to-Withdraw"
             }
          ],
          "containments": [
@@ -3630,7 +3165,7 @@
                   "version": "2023.1",
                   "key": "-key-Involving-label"
                },
-               "value": "request-to-withdraw>from>account"
+               "value": "from>account"
             },
             {
                "property": {
@@ -3667,7 +3202,7 @@
                },
                "targets": [
                   {
-                     "resolveInfo": "account",
+                     "resolveInfo": "Account",
                      "reference": "ID-47"
                   }
                ]
@@ -3690,7 +3225,7 @@
                   "version": "2023.1",
                   "key": "-key-Parameter-label"
                },
-               "value": "request-to-withdraw>_>cash"
+               "value": "_>cash"
             },
             {
                "property": {
@@ -3750,7 +3285,7 @@
                   "version": "2023.1",
                   "key": "-key-RequestTypeDef-name"
                },
-               "value": "request-to-transfer"
+               "value": "request-to-Transfer"
             }
          ],
          "containments": [
@@ -3794,7 +3329,7 @@
                   "version": "2023.1",
                   "key": "-key-Involving-label"
                },
-               "value": "request-to-transfer>to>account"
+               "value": "to>account"
             },
             {
                "property": {
@@ -3831,7 +3366,7 @@
                },
                "targets": [
                   {
-                     "resolveInfo": "account",
+                     "resolveInfo": "Account",
                      "reference": "ID-47"
                   }
                ]
@@ -3854,7 +3389,7 @@
                   "version": "2023.1",
                   "key": "-key-Involving-label"
                },
-               "value": "request-to-transfer>from>account"
+               "value": "from>account"
             },
             {
                "property": {
@@ -3891,7 +3426,7 @@
                },
                "targets": [
                   {
-                     "resolveInfo": "account",
+                     "resolveInfo": "Account",
                      "reference": "ID-47"
                   }
                ]
@@ -3914,7 +3449,7 @@
                   "version": "2023.1",
                   "key": "-key-Parameter-label"
                },
-               "value": "request-to-transfer>_>money"
+               "value": "_>money"
             },
             {
                "property": {
@@ -3974,7 +3509,7 @@
                   "version": "2023.1",
                   "key": "-key-RequestTypeDef-name"
                },
-               "value": "request-to-open-special-action"
+               "value": "request-to-Open-special-action"
             }
          ],
          "containments": [
@@ -4016,7 +3551,7 @@
                   "version": "2023.1",
                   "key": "-key-Involving-label"
                },
-               "value": "request-to-open>_>account"
+               "value": "_>account"
             },
             {
                "property": {
@@ -4053,7 +3588,7 @@
                },
                "targets": [
                   {
-                     "resolveInfo": "account",
+                     "resolveInfo": "Account",
                      "reference": "ID-47"
                   }
                ]
@@ -4076,7 +3611,7 @@
                   "version": "2023.1",
                   "key": "-key-Involving-label"
                },
-               "value": "request-to-open>for>customer"
+               "value": "for>customer"
             },
             {
                "property": {
@@ -4113,7 +3648,7 @@
                },
                "targets": [
                   {
-                     "resolveInfo": "customer",
+                     "resolveInfo": "Customer",
                      "reference": "ID-39"
                   }
                ]

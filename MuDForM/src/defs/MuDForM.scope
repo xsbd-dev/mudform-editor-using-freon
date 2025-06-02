@@ -1,0 +1,3 @@
+scoper AttributeContainerScoper for language MuDForM
+
+isnamespace { IAttributeContainer }

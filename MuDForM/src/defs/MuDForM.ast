@@ -13,6 +13,8 @@ modelunit TypeDefinitions {
     requesttypes: RequestTypeDef[];
 }
 
+interface IAttributeContainer {} // Marker Interface for scoper
+
 concept Description {
     text: string;
 }
@@ -46,7 +48,7 @@ concept KeywordConstraint {
 concept DecimalType base SimpleValueType {
 }
 
-concept CompositeValueType base ValueType {
+concept CompositeValueType base ValueType implements IAttributeContainer {
     fields: TypeField[];
 }
 
@@ -60,7 +62,7 @@ concept ValueTypeReference base ValueType {
     reference valuetype: ValueTypeDef;
 }
 
-concept EntityTypeDef {
+concept EntityTypeDef implements IAttributeContainer {
     name: identifier;
     doc?: Description;
     relations: Relation[];
@@ -85,14 +87,14 @@ concept Property {
     constraint?: string; // FIXME. string is a stop-gap.
 }
 
-concept TransitionTypeDef {
+concept TransitionTypeDef implements IAttributeContainer {
     name: identifier;
     doc?: Description;
     involvings: Involving[];
     parameters: Parameter[];
 }
 
-concept RequestTypeDef {
+concept RequestTypeDef implements IAttributeContainer {
     name: identifier;
     doc?: Description;
     involvings: Involving[];
