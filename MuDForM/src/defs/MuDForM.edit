@@ -11,7 +11,7 @@ TypeDefinitions {[
         ${requesttypes}
 ]}
 
-Description {[[? // ${text}]]}
+Description {[[? \/\/ ${text}]]}
 
 ValueTypeDef {[
     ${name} = ${valuetype} ${doc}

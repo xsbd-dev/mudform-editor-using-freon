@@ -1,3 +1,4 @@
+import { mount } from 'svelte'
 import { ServerCommunication } from "@freon4dsl/core";
 import { FreonLayout, WebappConfigurator } from "@freon4dsl/webapp-lib";
 import { configureExternals } from "./external/externals.js";
@@ -20,7 +21,8 @@ configureLoggers()
 /**
  * Now start the app ...
  */
-const app = new FreonLayout({
-    target: document.body,
-});
-export default app;
+const app = mount(FreonLayout, {
+    target: document.getElementById('freon')!,
+})
+
+export default app

@@ -287,10 +287,43 @@
             "key": "-key-StringType"
          },
          "properties": [],
-         "containments": [],
+         "containments": [
+            {
+               "containment": {
+                  "language": "-key-MuDForM",
+                  "version": "2023.1",
+                  "key": "-key-StringType-constraint"
+               },
+               "children": [
+                  "ID-28"
+               ]
+            }
+         ],
          "references": [],
          "annotations": [],
          "parent": "ID-18"
+      },
+      {
+         "id": "ID-28",
+         "classifier": {
+            "language": "-key-MuDForM",
+            "version": "2023.1",
+            "key": "-key-RegexConstraint"
+         },
+         "properties": [
+            {
+               "property": {
+                  "language": "-key-MuDForM",
+                  "version": "2023.1",
+                  "key": "-key-RegexConstraint-regex"
+               },
+               "value": ""
+            }
+         ],
+         "containments": [],
+         "references": [],
+         "annotations": [],
+         "parent": "ID-24"
       },
       {
          "id": "ID-35",
@@ -314,6 +347,16 @@
                "containment": {
                   "language": "-key-MuDForM",
                   "version": "2023.1",
+                  "key": "-key-EntityTypeDef-doc"
+               },
+               "children": [
+                  "ID-32"
+               ]
+            },
+            {
+               "containment": {
+                  "language": "-key-MuDForM",
+                  "version": "2023.1",
                   "key": "-key-EntityTypeDef-relations"
                },
                "children": []
@@ -332,6 +375,28 @@
          "references": [],
          "annotations": [],
          "parent": "ID-5"
+      },
+      {
+         "id": "ID-32",
+         "classifier": {
+            "language": "-key-MuDForM",
+            "version": "2023.1",
+            "key": "-key-Description"
+         },
+         "properties": [
+            {
+               "property": {
+                  "language": "-key-MuDForM",
+                  "version": "2023.1",
+                  "key": "-key-Description-text"
+               },
+               "value": ""
+            }
+         ],
+         "containments": [],
+         "references": [],
+         "annotations": [],
+         "parent": "ID-35"
       },
       {
          "id": "ID-36",
@@ -1007,7 +1072,7 @@
                   "version": "2023.1",
                   "key": "-key-Involving-optional"
                },
-               "value": "false"
+               "value": "true"
             },
             {
                "property": {
@@ -1015,7 +1080,7 @@
                   "version": "2023.1",
                   "key": "-key-Involving-many"
                },
-               "value": "false"
+               "value": "true"
             }
          ],
          "containments": [],
